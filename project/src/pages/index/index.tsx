@@ -1,7 +1,9 @@
+import {Div} from './styles';
+
 export function IndexPage() {
   return (
-    <div>
+    <Div.container>
         Hello World
-    </div>
+    </Div.container>
   );
 }
