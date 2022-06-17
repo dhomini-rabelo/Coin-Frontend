@@ -22,6 +22,7 @@ module.exports = {
   'rules': {
     'require-jsdoc': 0,
     'react/react-in-jsx-scope': 'off',
+    'linebreak-style': 0,
   },
   'settings': {
     'import/resolver': {
