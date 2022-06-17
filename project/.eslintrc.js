@@ -23,6 +23,10 @@ module.exports = {
     'require-jsdoc': 0,
     'react/react-in-jsx-scope': 'off',
     'linebreak-style': 0,
+    'max-line-length': [
+      true,
+      240
+    ],
   },
   'settings': {
     'import/resolver': {

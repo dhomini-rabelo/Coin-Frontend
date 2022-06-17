@@ -1,12 +1,16 @@
 import {Div} from '../../themes/form';
 import Logo from '../../../assets/global/favicon.svg';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export function LoginPage() {
+export function RegisterPage() {
   return (
     <Div.container>
       <div className="logoContainer"><img src={Logo} alt="logo" /></div>
       <Div.form>
+        <Div.fieldGroup>
+          <label htmlFor="">Nome</label>
+          <input type="text" placeholder="Digite seu nome" />
+        </Div.fieldGroup>
         <Div.fieldGroup>
           <label htmlFor="">Email</label>
           <input type="text" placeholder="Digite seu email" />
@@ -15,10 +19,13 @@ export function LoginPage() {
           <label htmlFor="">Senha</label>
           <input type="password" placeholder="Digite sua senha" />
         </Div.fieldGroup>
-        <Div.forgot><a href="#">Esqueceu a senha?</a></Div.forgot>
-        <button>Entrar</button>
+        <Div.fieldGroup>
+          <label htmlFor="">Confirmar senha</label>
+          <input type="password" placeholder="Digite sua senha" />
+        </Div.fieldGroup>
+        <button>Cadastrar</button>
         <Div.btnBottom>
-          <Link to="/cadastro">Criar uma conta</Link>
+          <Link to="/login">Fazer login</Link>
         </Div.btnBottom>
       </Div.form>
     </Div.container>

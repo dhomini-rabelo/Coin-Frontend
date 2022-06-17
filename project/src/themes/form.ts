@@ -5,7 +5,7 @@ export const Div = {
     display: flex;
     flex-flow: column nowrap;
     height: 100vh;
-    max-width: 360px;
+    max-width: 400px;
     margin: 0 auto;
 
     img {
@@ -15,13 +15,13 @@ export const Div = {
     }
 
     .logoContainer {
-      margin-top: 6rem;
+      margin-top: 3rem;
     }
 
   `,
 
   form: styled.div`
-    margin-top: 4rem;
+    margin-top: 2rem;
     padding: 0 10%;
 
     button {
@@ -33,6 +33,7 @@ export const Div = {
       margin-top: 3.2rem;
       border: none;
     }
+    
   `,
 
   fieldGroup: styled.div`
@@ -68,10 +69,22 @@ export const Div = {
   forgot: styled.div`
     display: flex;
 
-    span {
+    a {
       color: #5ED5A8;
       font-size: 12px;
       margin-top: 1rem;
     }
   `,
+
+  btnBottom: styled.div`
+    margin-top: 5.2rem;
+    margin-bottom: 10vh;
+    text-align: center;
+
+    a {
+      font-size: 14px;
+      color: #fafafa;
+    }
+  `,
+
 };
