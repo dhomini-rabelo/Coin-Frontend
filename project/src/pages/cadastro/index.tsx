@@ -3,7 +3,6 @@ import Logo from '../../../assets/global/favicon.svg';
 import { Link } from 'react-router-dom';
 import { ButtonForm } from '../../themes/form/components/buttons';
 
-
 export function RegisterPage() {
   return (
     <Div.container>
