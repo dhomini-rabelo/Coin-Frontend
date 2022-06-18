@@ -11,7 +11,7 @@ export function Header() {
                 <Div.nav>
                     <Link to='/conta/renda'>RENDA</Link>
                     <Link to='/conta/agenda'>CONTAS</Link>
-                    <Link to='/conta'>CONFIGURAÇÕES</Link>
+                    <Link to='/conta'>PERFIL</Link>
                     <div className="headerMobile">
                         <span>JUN</span>
                     </div>
