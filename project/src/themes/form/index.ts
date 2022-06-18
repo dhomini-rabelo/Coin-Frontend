@@ -8,7 +8,7 @@ export const Div = {
     max-width: 400px;
     margin: 0 auto;
 
-    img {
+    img[alt="logo"] {
       width: 8rem;
       height: 8rem;
       margin: 0 auto;
@@ -34,6 +34,10 @@ export const Div = {
       height: 5.4rem;
       margin-top: 3.2rem;
       border: none;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
     }
 
     .stage {
@@ -96,7 +100,7 @@ export const Div = {
   `,
 
   fieldGroup: styled.div`
-    margin-top: 2.4rem;
+    margin-top: 0.8rem;
 
 
     label {
@@ -127,11 +131,12 @@ export const Div = {
 
   forgot: styled.div`
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     a {
       color: #5ED5A8;
       font-size: 12px;
-      margin-top: 1rem;
     }
   `,
 
@@ -143,6 +148,20 @@ export const Div = {
     a {
       font-size: 14px;
       color: #fafafa;
+    }
+  `,
+
+  error: styled.div`
+    margin-top: 0.4rem;;
+    margin-left: 0.35rem;
+    display: flex;
+    align-items: center;
+    min-height: 19px;
+    color: #FF6B6B;
+    
+    span {
+      font-size: 12px;
+      margin-left: 0.4rem;
     }
   `,
 

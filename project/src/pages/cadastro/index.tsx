@@ -12,14 +12,17 @@ export function RegisterPage() {
         <Div.fieldGroup>
           <label htmlFor="">Email</label>
           <input type="text" placeholder="Digite seu email" />
+          <Div.error></Div.error>
         </Div.fieldGroup>
         <Div.fieldGroup>
           <label htmlFor="">Senha</label>
           <input type="password" placeholder="Digite sua senha" />
+          <Div.error></Div.error>
         </Div.fieldGroup>
         <Div.fieldGroup>
           <label htmlFor="">Confirmar senha</label>
           <input type="password" placeholder="Digite sua senha" />
+          <Div.error></Div.error>
         </Div.fieldGroup>
         <ButtonForm>Cadastrar</ButtonForm>
         <Div.btnBottom>
