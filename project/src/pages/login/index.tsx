@@ -1,6 +1,7 @@
 import {Div} from '../../themes/form';
 import Logo from '../../../assets/global/favicon.svg';
 import {Link} from 'react-router-dom';
+import { ButtonForm } from '../../themes/form/components/buttons';
 
 export function LoginPage() {
   return (
@@ -16,7 +17,7 @@ export function LoginPage() {
           <input type="password" placeholder="Digite sua senha" />
         </Div.fieldGroup>
         <Div.forgot><a href="#">Esqueceu a senha?</a></Div.forgot>
-        <button>Entrar</button>
+        <ButtonForm>Entrar</ButtonForm>
         <Div.btnBottom>
           <Link to="/cadastro">Criar uma conta</Link>
         </Div.btnBottom>

@@ -22,8 +22,10 @@ export const Div = {
 
   form: styled.div`
     margin-top: 2rem;
-    padding: 0 10%;
+    padding: 0 8%;
+  `,
 
+  buttonComponentStyle: styled.div`
     button {
       background: #5ED5A8;
       border-radius: 0.8rem;
@@ -33,7 +35,64 @@ export const Div = {
       margin-top: 3.2rem;
       border: none;
     }
+
+    .stage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dot-flashing {
+      position: relative;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: #000;
+      color: #000;
+      animation: dotFlashing 1s infinite linear alternate;
+      animation-delay: .5s;
+    }
+
+    .dot-flashing::before, .dot-flashing::after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 0;
+    }
+
+    .dot-flashing::before {
+      left: -15px;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: #000;
+      color: #000;
+      animation: dotFlashing 1s infinite alternate;
+      animation-delay: 0s;
+    }
+
+    .dot-flashing::after {
+      left: 15px;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: #000;
+      color: #000;
+      animation: dotFlashing 1s infinite alternate;
+      animation-delay: 1s;
+    }
     
+    @keyframes dotFlashing {
+      0% {
+        background-color: #000;
+      }
+      50%,
+      100% {
+        background-color: #ccc;
+      }
+    }
   `,
 
   fieldGroup: styled.div`
