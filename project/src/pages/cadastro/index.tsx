@@ -1,7 +1,7 @@
-import {Div} from '../../themes/form';
+import {Div} from '../../themes/styles/form';
 import Logo from '../../../assets/global/favicon.svg';
 import { Link } from 'react-router-dom';
-import { ButtonForm } from '../../themes/form/components/buttons';
+import { ButtonForm } from '../../themes/styles/form/components/buttons';
 
 export function RegisterPage() {
   return (
