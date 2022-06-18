@@ -12,7 +12,9 @@ export function Router() {
         <Route path="/" element={<IndexPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastro" element={<RegisterPage />} />
-        <Route path="/conta" element={<AccountPage />} />
+        <Route path="/perfil" element={<AccountPage />} />
+        <Route path="/contas" element={<AccountPage />} />
+        <Route path="/renda" element={<AccountPage />} />
       </Routes>
     </BrowserRouter>
   );

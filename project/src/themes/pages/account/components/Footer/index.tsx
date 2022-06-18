@@ -1,24 +1,33 @@
 import { Div } from "./styles";
 import { Money, Wallet, UserCircle } from 'phosphor-react'
-
+import { Link } from 'react-router-dom';
 
 
 export function Footer() {
+
+  const getColor = (path) => document.location.pathname == path ? '#5ed5a8' : '#777777'
+  
     return (
       <Div.container>
-        <Div.footer className="footerMobile">
-          <Div.icon>
-            <Money size={24} color={'#5ED5A8'} />
-            <span style={{color: '#5ED5A8'}}>Renda</span>
-          </Div.icon>
-          <Div.icon>
-            <Wallet size={24} color={'#777777'} />
-            <span>Contas</span>
-          </Div.icon>
-          <Div.icon>
-            <UserCircle size={24} color={'#777777'} />
-            <span>Perfil</span>
-          </Div.icon>
+        <Div.footer>
+          <Link to='/renda'>
+            <Div.icon color={getColor('/renda')}>
+              <Money size={24} />
+              <span>Renda</span>
+            </Div.icon>
+          </Link>
+          <Link to='/contas'>
+            <Div.icon color={getColor('/contas')}>
+              <Wallet size={24} />
+              <span>Contas</span>
+            </Div.icon>
+          </Link>
+          <Link to='/perfil'>
+            <Div.icon color={getColor('/perfil')}>
+              <UserCircle size={24} />
+              <span>Perfil</span>
+            </Div.icon>
+          </Link>
         </Div.footer>
       </Div.container>
     )

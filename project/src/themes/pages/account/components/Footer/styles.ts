@@ -14,7 +14,6 @@ export const Div = {
 
   footer: styled.footer`
     height: 76px;
-    margin-bottom: 2.4rem;
     margin-inline: 2.4rem;
     display: flex;
     justify-content: space-around;
@@ -25,19 +24,19 @@ export const Div = {
     }
   `,
 
-  icon: styled.div`
+  icon: styled.div(({ color }: { color: string }) => `
     display: flex;
+    color: ${color};
     justify-content: center;
     align-items: center;
     flex-direction: column;
     cursor: pointer;
-
+    
     span {
       font-size: 14px;
       margin-top: 1rem;
-      color: #777777;
     }
-  `,
+  `),
 
   dummy: styled.div``,
 };

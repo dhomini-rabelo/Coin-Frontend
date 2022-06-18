@@ -20,19 +20,15 @@ export const Div = {
   
   nav: styled.nav`
     display: flex;
-  
-    a, span {
-        color: #fafafa;
-        font-size: 22px;
-        margin-left: 2rem;
-    }
-
-    a:first-child {
-        margin-left: 0;
-    }
+    justify-content: space-between;
 
     .headerMobile {
         display: none;
+    }
+
+    span {
+        color: #fafafa;
+        font-size: 22px;
     }
 
     @media (max-width: 768px) {
@@ -46,6 +42,24 @@ export const Div = {
         
     }
   `,
+
+  link: styled.div(({ active }: { active: boolean }) => `
+    margin-left: 2rem;
+  
+    a {
+        color: #fafafa;
+        font-size: 22px;
+    }
+
+    .border {
+      background-color: ${active ? '#fafafa' : 'transparent'};
+      height: 0.2rem;
+      margin: 0 auto;
+      margin-top: 0.4rem;
+      width: 60%;
+      border-radius: 0.5rem;
+    }
+  `),
 
   dummy: styled.div``,
 
