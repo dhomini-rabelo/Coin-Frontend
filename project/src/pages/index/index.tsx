@@ -1,11 +1,10 @@
+import { SimpleModal } from '../../components/Modals/SimpleModal';
 import {Div} from './styles';
 
 export function IndexPage() {
   return (
     <Div.container>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
+        <SimpleModal />
     </Div.container>
   );
 }
