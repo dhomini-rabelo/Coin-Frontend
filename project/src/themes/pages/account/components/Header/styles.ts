@@ -51,6 +51,10 @@ export const Div = {
         font-size: 22px;
     }
 
+    a:hover {
+      color: #5ed5a8;
+    }
+
     .border {
       background-color: ${active ? '#fafafa' : 'transparent'};
       height: 0.2rem;
