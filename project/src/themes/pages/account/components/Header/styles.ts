@@ -11,6 +11,8 @@ export const Div = {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid #213436;
+    padding-bottom: 10px;
 
     img {
         width: 6rem;
@@ -55,7 +57,7 @@ export const Div = {
       color: #5ed5a8;
     }
 
-    .border {
+    .border-lk {
       background-color: ${active ? '#fafafa' : 'transparent'};
       height: 0.2rem;
       margin: 0 auto;

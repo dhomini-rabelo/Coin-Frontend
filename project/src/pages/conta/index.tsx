@@ -4,6 +4,8 @@ import { AccountPagesModel } from './../../themes/pages/account/index'
 
 export function AccountPage() {
   return (
-    <AccountPagesModel />
+    <AccountPagesModel>
+      <Div.box></Div.box>
+    </AccountPagesModel>
   );
 }

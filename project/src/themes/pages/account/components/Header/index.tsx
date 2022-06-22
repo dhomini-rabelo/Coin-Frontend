@@ -15,15 +15,15 @@ export function Header() {
                 <Div.nav>
                     <Div.link active={isActiveLink('/renda')}>
                         <Link to='/renda'>RENDA</Link>
-                        <div className="border"></div>
+                        <div className="border-lk"></div>
                     </Div.link>
                     <Div.link active={isActiveLink('/contas')}>
                         <Link to='/contas'>CONTAS</Link>
-                        <div className="border"></div>
+                        <div className="border-lk"></div>
                     </Div.link>
                     <Div.link active={isActiveLink('/perfil')}>
                         <Link to='/perfil'>PERFIL</Link>
-                        <div className="border"></div>
+                        <div className="border-lk"></div>
                     </Div.link>
                     <div className="headerMobile">
                         <span>{MONTHS_NAME[now.getMonth() - 1].slice(0, 3).toUpperCase()}</span>
