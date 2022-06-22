@@ -22,7 +22,7 @@ export const Div = {
         width: 100% !important;
 
         svg {
-          margin-top: 1rem;
+          margin-block: 1rem;
         }
       }
     }

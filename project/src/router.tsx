@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {RegisterPage} from './pages/cadastro';
-import { AccountPage } from './pages/conta';
+import { AccountPage } from './pages/perfil';
 import {IndexPage} from './pages/index';
 import {LoginPage} from './pages/login';
 import {BillPage} from './pages/contas';

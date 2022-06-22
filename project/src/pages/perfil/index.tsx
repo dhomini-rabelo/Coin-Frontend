@@ -1,5 +1,5 @@
 import {Div} from './styles';
-import { AccountPagesModel } from './../../themes/pages/account/index'
+import { AccountPagesModel } from '../../themes/pages/account/index'
 import { SimpleBox } from '../../components/SimpleBox';
 import { Envelope, LockSimple } from 'phosphor-react';
 
