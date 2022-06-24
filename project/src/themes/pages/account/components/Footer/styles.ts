@@ -6,6 +6,7 @@ export const Div = {
       bottom: 0;
       left: 0;
       width: 100%;
+      background-color: #1B232A;
 
       @media(min-width: 768px){
         display: none;

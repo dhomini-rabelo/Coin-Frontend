@@ -28,7 +28,7 @@ export function IncomePage() {
         <Div.box>
           <Div.title><span>RENDA</span></Div.title>
           <Div.data>
-            <span>R$ 250,27</span>
+              <span>R$ 250,27</span>
             <Div.percent>
               <ArrowUp size={16} color='#32D74B' /><span>10%</span>
             </Div.percent>

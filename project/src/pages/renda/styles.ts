@@ -27,43 +27,51 @@ export const Div = {
       flex-direction: column;
       max-width: 320px;
       flex: 0;
+      justify-content: center;
     }
-
+    
     @media(max-width: 400px) {
       flex-direction: column;
+      justify-content: center;
     }
   `,
-  
+
   title: styled.div`
     font-size: 44px;
+    margin-right: 2rem;
 
     @media(min-width: 500px) {
       font-size: 64px;
     }
   `,
-  
+
   data: styled.div`
     padding-top: 0.8rem;
     font-size: 36px;
     display: flex;
-    align-items: top;
+    align-items: flex-start;
+
+    & > span {
+      white-space: nowrap;
+    }
 
     @media(min-width: 500px) {
       font-size: 48px;
     }
-
   `,
-  
+
   percent: styled.div`
       color: #32D74B;
       font-size: 22px;
       display: flex;
-      align-items: top;
+      align-items: flex-start;
       padding-top: 0.4rem;
       margin-left: 0.4rem;
+
       svg {
         display: inline-block;
       }
+
       @media(min-width: 500px) {
        font-size: 30px;
         svg {

@@ -5,5 +5,6 @@ export const Div = {
     max-width: 1024px;
     margin: 0 auto;
     padding-top: 1.5rem;
+    padding-bottom: 116px;
   `,
 };
