@@ -1,4 +1,5 @@
 import { ArrowUp } from 'phosphor-react';
+import { PercentBox } from '../../components/PercentBox';
 import { AccountPagesModel } from '../../themes/pages/account';
 import {Div} from './styles';
 
@@ -7,33 +8,9 @@ export function IncomePage() {
   return (
     <AccountPagesModel>
       <Div.container>
-        <Div.box>
-          <Div.title><span>RENDA</span></Div.title>
-          <Div.data>
-            <span>R$ 250,27</span>
-            <Div.percent>
-              <ArrowUp size={16} color='#32D74B' /><span>10%</span>
-            </Div.percent>
-          </Div.data>
-        </Div.box>
-        <Div.box>
-          <Div.title><span>RENDA</span></Div.title>
-          <Div.data>
-            <span>R$ 250,27</span>
-            <Div.percent>
-              <ArrowUp size={16} color='#32D74B' /><span>10%</span>
-            </Div.percent>
-          </Div.data>
-        </Div.box>
-        <Div.box>
-          <Div.title><span>RENDA</span></Div.title>
-          <Div.data>
-              <span>R$ 250,27</span>
-            <Div.percent>
-              <ArrowUp size={16} color='#32D74B' /><span>10%</span>
-            </Div.percent>
-          </Div.data>
-        </Div.box>
+        <PercentBox title="RENDA" value={100.75} percent={15} />
+        <PercentBox title="GANHO" value={200.00} percent={-15} />
+        <PercentBox title="GASTOS" value={99} percent={20.9} />
       </Div.container>
     </AccountPagesModel>
   );
