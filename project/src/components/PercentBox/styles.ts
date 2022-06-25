@@ -7,7 +7,7 @@ export const Div = {
     display: flex;
     justify-content: space-between;
     padding-block: 2px 10px;
-    padding-inline: 8%;
+    padding-inline: 1rem;
     width: min(100%, 320px);
     border-radius: 8px;
     align-items: center;
@@ -16,6 +16,7 @@ export const Div = {
     margin-top: 2rem;
     
     @media(min-width: 500px) {
+      padding-inline: 8%;
       flex-direction: column;
       flex: 0;
       justify-content: center;
