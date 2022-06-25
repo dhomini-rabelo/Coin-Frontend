@@ -4,7 +4,7 @@ import { ArrowDown, ArrowUp } from 'phosphor-react';
 
 export function PercentBox({title, value, percent}: {title: string, value: number, percent: number}) {
     function getBoxColor(percent: number) {
-      if(percent>10) { return '#32D74B' } else if (percent<-10) { return '#FF375F' } else { return '#FE9710'}
+      if(percent>10) { return '#32D74B' } else if (percent<-10) { return '#FF375F' } else { return '#FE9710' }
     }
     let boxColor = getBoxColor(percent)
     return (
