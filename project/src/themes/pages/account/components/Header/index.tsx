@@ -1,5 +1,6 @@
 import { Div } from "./styles";
 import Logo from '../../../../../../assets/global/favicon.svg';
+import Bell from '../../../../../../assets/account/bell.svg';
 import { Link } from 'react-router-dom';
 import { MONTHS_NAME } from "../../../../../data/date";
 
@@ -13,6 +14,10 @@ export function Header() {
             <Div.header>
                 <img src={Logo} alt="logo" />
                 <Div.nav>
+                    <Div.link active={isActiveLink('/alertas')}>
+                        <Link to='/alertas'>ALERTAS</Link>
+                        <div className="border-lk"></div>
+                    </Div.link>
                     <Div.link active={isActiveLink('/renda')}>
                         <Link to='/renda'>RENDA</Link>
                         <div className="border-lk"></div>
@@ -26,7 +31,7 @@ export function Header() {
                         <div className="border-lk"></div>
                     </Div.link>
                     <div className="headerMobile">
-                        <span>{MONTHS_NAME[now.getMonth() - 1].slice(0, 3).toUpperCase()}</span>
+                        <img src={Bell} alt="logo" />
                     </div>
                 </Div.nav>
             </Div.header>

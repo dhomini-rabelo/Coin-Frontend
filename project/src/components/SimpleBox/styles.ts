@@ -44,6 +44,7 @@ export const Div = {
 
 arrow: styled.div`
     margin-right: 2.4rem;
+    margin-left: 0.8rem;
     display: flex;
     justify-content: center;
     align-items: center;

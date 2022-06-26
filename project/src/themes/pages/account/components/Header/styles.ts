@@ -28,6 +28,13 @@ export const Div = {
         display: none;
     }
 
+    .headerMobile > img {
+      color: #5ed5a8;
+      width: 58px;
+      height: 58px;
+      cursor: pointer;
+    }
+
     span {
         color: #fafafa;
         font-size: 22px;
