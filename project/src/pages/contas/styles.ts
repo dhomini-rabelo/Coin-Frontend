@@ -16,8 +16,9 @@ export const Div = {
     align-items: center;
 
     button {
-      font-size: 10px;
+      font-size: 12px;
       line-height: 22px;
+      padding: 0.4rem 1.6rem;
       letter-spacing: 0.0264em;
       font-style: normal;
       font-weight: 700;

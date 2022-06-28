@@ -5,6 +5,7 @@ import {IndexPage} from './pages/index';
 import {LoginPage} from './pages/login';
 import {BillPage} from './pages/contas';
 import {IncomePage} from './pages/renda';
+import { NotificationsPage } from './pages/alertas';
 
 
 export function Router() {
@@ -17,6 +18,7 @@ export function Router() {
         <Route path="/perfil" element={<AccountPage />} />
         <Route path="/contas" element={<BillPage />} />
         <Route path="/renda" element={<IncomePage />} />
+        <Route path="/alertas" element={<NotificationsPage />} />
       </Routes>
     </BrowserRouter>
   );
