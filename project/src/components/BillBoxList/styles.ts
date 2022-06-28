@@ -11,6 +11,7 @@ export const Div = {
   box: styled.div`
     margin-top: 3.2rem;
     width: 45%;
+    cursor: pointer;
     
     &:first-child {
       margin-top: 2.6rem;

@@ -26,6 +26,17 @@ export const Div = {
 
     .headerMobile {
         display: none;
+        position: relative;
+    }
+
+    .red-circle-notification {
+      position: absolute;
+      right: 1rem;
+      top: 0.6rem;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: #FF6B6B;
     }
 
     .headerMobile > img {

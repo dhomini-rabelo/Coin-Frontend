@@ -17,6 +17,7 @@ export const Div = {
     height: 76px;
     margin-inline: 2.4rem;
     display: flex;
+    align-items: center;
     justify-content: space-around;
     
     @media(max-width: 400px){

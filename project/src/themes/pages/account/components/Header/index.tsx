@@ -32,6 +32,7 @@ export function Header() {
                     </Div.link>
                     <div className="headerMobile">
                         <img src={Bell} alt="logo" />
+                        <div className="red-circle-notification"></div>
                     </div>
                 </Div.nav>
             </Div.header>

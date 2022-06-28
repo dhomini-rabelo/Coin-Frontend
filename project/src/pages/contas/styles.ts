@@ -26,6 +26,10 @@ export const Div = {
       color: #1B232A;
     }
 
+    svg {
+      cursor: pointer;
+    }
+
     @media(max-width: 768px) {
       button {
         display: none;
@@ -46,6 +50,24 @@ export const H1 = {
     font-style: normal;
     font-weight: 700;
     color: #fafafa;
+  `,
+
+}
+
+
+export const Button = {
+
+  addBill: styled.button`
+    position: fixed;
+    right: 36px;
+    bottom: 116px;
+    background-color: #5ED5A8;
+    border-radius: 50%;
+    padding: 0.8rem;
+
+    @media(min-width: 768px) {
+      display: none;
+    }
   `,
 
 }
