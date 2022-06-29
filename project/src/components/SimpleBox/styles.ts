@@ -9,7 +9,7 @@ export const Div = {
     width: 100%;
     min-height: 134px;
     border: 0.1px solid #444444;
-    max-width: 400px;
+    max-width: 40rem;
     margin-top: 2rem;
     flex-wrap: wrap;
     
@@ -39,10 +39,10 @@ export const Div = {
   main: styled.div`
     margin-left: 2.4rem;
     margin-top: 2.4rem;
-    flex: 1
+    flex: 1;
   `,
 
-arrow: styled.div`
+  arrow: styled.div`
     margin-right: 2.4rem;
     margin-left: 0.8rem;
     display: flex;

@@ -11,14 +11,14 @@ export const Div = {
     top: 0; 
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: flex-start;
   `,
 
   box: styled.div`
     background-color: #1B232A;
     width: 480px;
     border-radius: 1.6rem;
-    margin-bottom: 50vh;
+    margin-top: 10vh;
   `,
     
   header: styled.div`

@@ -6,7 +6,7 @@ import { Div } from './styles'
 
 export function SimplePopover({button, children}: {button:ReactNode, children:ReactNode}) {
     return (
-        <Popover>
+        <Popover className="flex" style={{width: '400px'}}>
 
         <Popover.Panel>
             <Div.container>
@@ -19,8 +19,8 @@ export function SimplePopover({button, children}: {button:ReactNode, children:Re
             </Div.container>
         </Popover.Panel>
 
-        <Popover.Button>{button}</Popover.Button>
 
+        <Popover.Button className="flex-1">{button}</Popover.Button>
       </Popover>
     )
 }
