@@ -115,12 +115,20 @@ export const Div = {
       width: 100%;
       border: none;
       margin-top: 1.2rem;
-      background-color: #fAfAfA;
+      background-color: #363636;
       font-size: 14px;
-      color: #1B232A;
       text-indent: 1rem;
       outline: none;
       border-radius: 0.4rem;
+      color: #fafafa;
+    }
+    
+    input:focus {
+      border-bottom: 1.8px solid #FFFFFF;
+    }
+
+    input:disabled {
+      background-color: transparent;
     }
     
     input::placeholder {

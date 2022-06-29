@@ -9,18 +9,18 @@ export function RegisterPage() {
       <div className="logoContainer"><img src={Logo} alt="logo" /></div>
       <Div.form>
         <Div.fieldGroup>
-          <label htmlFor="">Email</label>
-          <input type="text" placeholder="Digite seu email" />
+          <label htmlFor="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Digite seu email" />
           <Div.error></Div.error>
         </Div.fieldGroup>
         <Div.fieldGroup>
-          <label htmlFor="">Senha</label>
-          <input type="password" placeholder="Digite sua senha" />
+          <label htmlFor="password">Senha</label>
+          <input type="password" name="password" id="password" placeholder="Digite sua senha" />
           <Div.error></Div.error>
         </Div.fieldGroup>
         <Div.fieldGroup>
-          <label htmlFor="">Confirmar senha</label>
-          <input type="password" placeholder="Digite sua senha" />
+          <label htmlFor="confirm-password">Confirmar Senha</label>
+          <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirme sua senha" />
           <Div.error></Div.error>
         </Div.fieldGroup>
         <ButtonForm>Cadastrar</ButtonForm>

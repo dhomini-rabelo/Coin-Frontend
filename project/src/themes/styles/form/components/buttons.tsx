@@ -1,4 +1,5 @@
 import { useState, ReactNode } from "react"
+import { Loading } from "../../../../components/Loading"
 import { Div } from '../index'
 
 
@@ -7,7 +8,7 @@ export function ButtonForm({ children, active=true, loadAnimation=true }: { chil
 
     return loadAnimation && clicked ? (
         <Div.buttonComponentStyle>
-            <button disabled={!active || clicked} className="stage"><span className="dot-flashing"></span></button>
+            <button disabled={!active || clicked} className="stage"><Loading /></button>
         </Div.buttonComponentStyle>
     ): (
         <Div.buttonComponentStyle>
