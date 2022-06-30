@@ -20,6 +20,21 @@ export const Div = {
 
   `,
 
+  select: styled.div`
+    background-color: #363636;
+    padding-left: 0.5rem;
+    max-height: 5.2rem;
+    li, button, div {
+      display: block !important;
+      color: #fafafa;
+      font-size: 14px;
+      padding-block: 1.6rem;
+      padding-left: 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+  `,
+
   form: styled.div`
     margin-top: 2rem;
     padding: 0 8%;
@@ -101,6 +116,7 @@ export const Div = {
 
   fieldGroup: styled.div`
     margin-top: 0.8rem;
+
 
 
     label {

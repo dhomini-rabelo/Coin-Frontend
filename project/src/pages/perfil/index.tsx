@@ -6,6 +6,9 @@ import { Popover } from '@headlessui/react'
 import { Envelope, LockSimple, Watch } from 'phosphor-react';
 import { SimplePopover } from '../../components/Popovers/SimplePopover';
 import { ButtonForm } from '../../themes/styles/form/components/buttons';
+import { SimpleSelect } from '../../components/Select/simple';
+
+
 
 
 export function AccountPage() {
@@ -47,14 +50,10 @@ export function AccountPage() {
               <FormDiv.error></FormDiv.error>
             </FormDiv.fieldGroup>
             <FormDiv.fieldGroup>
-              <label htmlFor="">Novo Email</label>
-              <input type="text" placeholder="Digite seu novo email" />
-              <FormDiv.error></FormDiv.error>
-            </FormDiv.fieldGroup>
-            <FormDiv.fieldGroup>
-              <label htmlFor="">Confirmar Email</label>
-              <input type="text" placeholder="Confirme seu novo email" />
-              <FormDiv.error></FormDiv.error>
+              <label htmlFor="">Horário</label>
+              <FormDiv.select>
+                <SimpleSelect data={['8:00', '12:00', '16:00', '20:00']} initialValue="16:00" />
+              </FormDiv.select>
             </FormDiv.fieldGroup>
             <ButtonForm>Confirmar</ButtonForm>
           </FormDiv.form>
