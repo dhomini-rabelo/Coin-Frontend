@@ -2,7 +2,7 @@ import { useState, ReactNode } from "react"
 import styled from 'styled-components';
 
 const Button = {
-    main: styled.button`
+    main: styled.div`
       background: #5ED5A8;
       border-radius: 0.8rem;
       width: 100%;
@@ -12,8 +12,10 @@ const Button = {
 }
 
 
-export function SimpleButton({ children }: { children: ReactNode }) {
-    return (
+export function SimpleButton({ children, id }: { children: ReactNode, id?: string }) {
+    return id ? (
+      <Button.main id={id}>{children}</Button.main>
+      ): (
       <Button.main>{children}</Button.main>
     )
 }

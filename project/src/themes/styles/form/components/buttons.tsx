@@ -8,11 +8,11 @@ export function ButtonForm({ children, active=true, loadAnimation=true }: { chil
 
     return loadAnimation && clicked ? (
         <Div.buttonComponentStyle>
-            <button disabled={!active || clicked} className="stage"><Loading /></button>
+            <button id="buttonComponent" disabled={!active || clicked} className="stage"><Loading /></button>
         </Div.buttonComponentStyle>
     ): (
         <Div.buttonComponentStyle>
-            <button disabled={!active || clicked} onClick={() => { setClicked(true) }}>{children}</button>
+            <button id="buttonComponent" disabled={!active || clicked} onClick={() => { setClicked(true) }}>{children}</button>
         </Div.buttonComponentStyle>
     )
 }

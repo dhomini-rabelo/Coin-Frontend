@@ -41,7 +41,7 @@ export const Div = {
   `,
 
   buttonComponentStyle: styled.div`
-    button {
+    #buttonComponent {
       background: #5ED5A8;
       border-radius: 0.8rem;
       width: 100%;
@@ -117,7 +117,26 @@ export const Div = {
   fieldGroup: styled.div`
     margin-top: 0.8rem;
 
+    input[type="checkbox"] {
+      display: inline;
+      width: 1.6rem;
+      height: 1.6rem;
+      margin-top: 0;
+    }
 
+    span {
+      color: #fafafa;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+
+      span {
+        margin-left: 0.4rem;
+      }
+    }
 
     label {
       color: #A7AFB7;
@@ -125,7 +144,7 @@ export const Div = {
       display: block;
     }
     
-    input {
+    input, textarea {
       height: 5.4rem;
       display: block;
       width: 100%;
@@ -138,8 +157,14 @@ export const Div = {
       border-radius: 0.4rem;
       color: #fafafa;
     }
+
+    textarea {
+      padding: 1rem;
+      height: auto;
+      text-indent: 0;
+    }
     
-    input:focus {
+    input:focus, textarea:focus {
       border-bottom: 1.8px solid #FFFFFF;
     }
 
@@ -147,7 +172,7 @@ export const Div = {
       background-color: transparent;
     }
     
-    input::placeholder {
+    input::placeholder, textarea::placeholder {
       color: #777777;
     }
 

@@ -15,23 +15,27 @@ export const Div = {
     display: flex;
     align-items: center;
 
-    button {
+    & > div {
+      width: auto !important;
+    }
+
+    #addBill {
       font-size: 12px;
       line-height: 22px;
       padding: 0.4rem 1.6rem;
       letter-spacing: 0.0264em;
       font-style: normal;
       font-weight: 700;
-      margin-left: 2rem;
       color: #1B232A;
     }
 
     svg {
       cursor: pointer;
+      margin-right: 2rem;
     }
 
     @media(max-width: 768px) {
-      button {
+      #addBill {
         display: none;
       }
     }
