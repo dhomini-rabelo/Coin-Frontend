@@ -37,13 +37,13 @@ export const Div = {
       font-size: 14px;
     }
     svg {
-      margin-right: 0.4rem;
+      margin-right: 0.4rem !important;
     }
   `,
 
   form: styled.div`
     margin-top: 2rem;
-    padding: 0 4%;
+    padding: 0 2%;
     
     input[type="checkbox"], .checkbox-label {
       cursor: pointer;

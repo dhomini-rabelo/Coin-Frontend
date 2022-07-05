@@ -47,7 +47,7 @@ export function ChildrenSelect({data, initialValue}: {data: Array<ReactNode>, in
             {data.map((option, index) => {
               counter += 40
               return (
-              <Listbox.Option style={{position: 'fixed', left: '0', top: `${counter}px`, display: 'block !important', backgroundColor:'#363636', width: '100%'}} key={index} value={option}>
+              <Listbox.Option style={{position: 'fixed', left: '-0.3rem', top: `${counter}px`, display: 'block !important', backgroundColor:'#363636', width: '100%'}} key={index} value={option}>
                 {option}
               </Listbox.Option>
             )})}
