@@ -33,6 +33,12 @@ export const Div = {
       margin-top: 1rem;
       cursor: pointer;
     }
+    span {
+      font-size: 14px;
+    }
+    svg {
+      margin-right: 0.4rem;
+    }
   `,
 
   form: styled.div`

@@ -1,4 +1,4 @@
-import { Funnel, Plus } from 'phosphor-react';
+import { Circle, Funnel, Plus } from 'phosphor-react';
 import { BillBoxList } from '../../components/BillBoxList';
 import { SimpleButton } from '../../components/Buttons/simple';
 import { SimplePopover } from '../../components/Popovers/SimplePopover';
@@ -7,7 +7,8 @@ import {Div, H1, Button} from './styles';
 import {Div as FormDiv} from '../../themes/styles/form';
 import { ButtonForm } from '../../themes/styles/form/components/buttons';
 import { ReactNode } from 'react';
-import { SimpleSelect } from '../../components/Select/simple';
+import { ChildrenSelect, SimpleSelect } from '../../components/Select/simple';
+import { CircleIcon } from '../../components/Icons/circle';
 
 
 
@@ -18,7 +19,28 @@ export function BillPage() {
         <Div.title>
           <H1.title>Contas</H1.title>
           <Div.funel>
-            <Funnel size={32} color='#fafafa' />
+            <SimplePopover long={false} button={<Funnel size={32} color='#fafafa' />}>
+            <FormDiv.form>
+              <FormDiv.fieldGroup>
+                <label htmlFor="">Contas</label>
+                <FormDiv.select>
+                  <ChildrenSelect data={[<span>Todas</span>, <span><CircleIcon size={12} color="#FF6B6B" /> Despesas</span>, <span><CircleIcon size={12} color="#5ED5A8" /> Ganhos</span>]} initialValue="Todas" />
+                </FormDiv.select>
+                <FormDiv.error></FormDiv.error>
+              </FormDiv.fieldGroup>
+              <FormDiv.fieldGroup>
+                <label htmlFor="value">Valor</label>
+                <input type="number" step={0.01} name="value" id="value" placeholder="Digite o valor da conta" />
+                <FormDiv.error></FormDiv.error>
+              </FormDiv.fieldGroup>
+              <FormDiv.fieldGroup>
+                <label htmlFor="title">Buscar</label>
+                <input type="text" name="title" id="title" placeholder="Busque pelo título da conta" />
+                <FormDiv.error></FormDiv.error>
+              </FormDiv.fieldGroup>
+              <ButtonForm>Filtrar</ButtonForm>
+            </FormDiv.form>
+            </SimplePopover>
             <AddBillFormPopover button={<SimpleButton id="addBill">Adicionar</SimpleButton>} />
           </Div.funel>
         </Div.title>
