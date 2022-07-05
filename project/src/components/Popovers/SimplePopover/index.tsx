@@ -1,4 +1,4 @@
-import { Popover } from '@headlessui/react'
+import { Popover, Transition } from '@headlessui/react'
 import { ReactNode } from 'react'
 import { CloseButton } from '../CloseButton'
 import { Div } from './styles'
@@ -14,7 +14,7 @@ export function SimplePopover({button, children, long=false}: {button:ReactNode,
                     <Div.header>
                         <CloseButton></CloseButton>
                     </Div.header>
-                    {long ? <div className="long-form">{children}</div> : <div>{children}</div>}
+                        {long ? <div className="long-form">{children}</div> : <div>{children}</div>}
                 </Div.box>
             </Div.container>
         </Popover.Panel>
