@@ -38,6 +38,10 @@ export const Div = {
       #addBill {
         display: none;
       }
+
+      svg {
+        margin-right: 0;
+      }
     }
   `,
 

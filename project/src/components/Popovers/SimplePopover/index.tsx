@@ -4,17 +4,17 @@ import { CloseButton } from '../CloseButton'
 import { Div } from './styles'
 
 
-export function SimplePopover({button, children}: {button:ReactNode, children:ReactNode}) {
+export function SimplePopover({button, children, long=false}: {button:ReactNode, children:ReactNode, long: boolean}) {
     return (
         <Popover className="flex" style={{width: '400px'}}>
 
         <Popover.Panel>
             <Div.container>
-                <Div.box>
+                <Div.box long={long}>
                     <Div.header>
                         <CloseButton></CloseButton>
                     </Div.header>
-                    {children}
+                    {long ? <div className="long-form">{children}</div> : <div>{children}</div>}
                 </Div.box>
             </Div.container>
         </Popover.Panel>

@@ -4,7 +4,7 @@ export const Div = {
   container: styled.div`
     display: flex;
     flex-flow: column nowrap;
-    height: 100vh;
+    min-height: 100vh;
     max-width: 400px;
     margin: 0 auto;
 
@@ -37,14 +37,32 @@ export const Div = {
 
   form: styled.div`
     margin-top: 2rem;
-    padding: 0 8%;
+    padding: 0 4%;
+    
+    input[type="checkbox"], .checkbox-label {
+      cursor: pointer;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
   `,
 
   buttonComponentStyle: styled.div`
+    width: 100% !important;
+
     #buttonComponent {
       background: #5ED5A8;
       border-radius: 0.8rem;
-      width: 100%;
+      width: 100% !important;
       font-size: 18px;
       height: 5.4rem;
       margin-top: 3.2rem;
