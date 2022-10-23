@@ -6,3 +6,6 @@
 <br>
 
 <img src="./readme/coin.gif" />
+<br>
+<br>
+<img src="./readme/coin-pc.gif" />
