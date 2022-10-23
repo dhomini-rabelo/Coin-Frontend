@@ -230,9 +230,10 @@ export const Div = {
     display: flex;
     align-items: center;
     min-height: 19px;
-    color: #FF6B6B;
+    color: #FF6B6B !important;
     
     span {
+      color: #FF6B6B !important;
       font-size: 12px;
       margin-left: 0.4rem;
     }

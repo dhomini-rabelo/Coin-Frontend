@@ -1,7 +1,7 @@
-import {Div} from '../../themes/styles/form';
+import { Div } from '../../themes/styles/form';
 import Logo from '../../../assets/global/favicon.svg';
 import ErrorIcon from '../../../assets/form/error.svg';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ButtonForm } from '../../themes/styles/form/components/buttons';
 
 export function LoginPage() {
