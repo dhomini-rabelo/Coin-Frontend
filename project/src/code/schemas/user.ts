@@ -2,14 +2,14 @@ import * as zod from 'zod'
 import { DynamicErrors, ErrorMessages } from './support/messages'
 
 export interface RegisterUserSchemaType {
-  username: string
+  email: string
   password: string
   confirm_password: string
 }
 
 export const RegisterUserSchema = zod
   .object({
-    username: zod
+    email: zod
       .string()
       .min(1, ErrorMessages.REQUIRED)
       .max(150, DynamicErrors.maxLength(150)),
