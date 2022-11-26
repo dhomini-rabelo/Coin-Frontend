@@ -139,7 +139,7 @@ export const Div = {
   `,
 
   fieldGroup: styled.div`
-    margin-top: 0.8rem;
+    margin-top: 1.6rem;
 
     input[type="checkbox"] {
       display: inline;
@@ -173,7 +173,7 @@ export const Div = {
       display: block;
       width: 100%;
       border: none;
-      margin-top: 1.2rem;
+      margin-top: 0.4rem;
       background-color: #363636;
       font-size: 14px;
       text-indent: 1rem;
@@ -225,8 +225,6 @@ export const Div = {
   `,
 
   error: styled.div`
-    margin-top: 0.4rem;;
-    margin-left: 0.35rem;
     display: flex;
     align-items: center;
     min-height: 19px;
