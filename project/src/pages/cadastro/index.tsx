@@ -25,6 +25,7 @@ export function RegisterPage() {
     console.log(errors)
   }
 
+
   return (
     <Div.container>
       <div className="logoContainer"><img src="/core/logo.svg" alt="logo" /></div>
@@ -33,35 +34,17 @@ export function RegisterPage() {
           <Div.fieldGroup>
             <label htmlFor="email">Email</label>
             <input type="email" placeholder="Digite seu email" {...register('email')} />
-            <span className="min-h-[20px] block">
-              <ErrorMessage
-                errors={errors}
-                name="email"
-                render={({ message }) => <Error message={message} />}
-              />
-            </span>
+            <Error field="email" errors={errors} />
           </Div.fieldGroup>
           <Div.fieldGroup>
             <label htmlFor="password">Senha</label>
             <input type="password" placeholder="Digite sua senha" {...register('password')} />
-            <span className="min-h-[20px] block">
-              <ErrorMessage
-                errors={errors}
-                name="password"
-                render={({ message }) => <Error message={message} />}
-              />
-            </span>
+            <Error field="password" errors={errors} />
           </Div.fieldGroup>
           <Div.fieldGroup>
             <label htmlFor="confirm_password">Confirmar Senha</label>
             <input type="password" placeholder="Confirme sua senha" {...register('confirm_password')} />
-            <span className="min-h-[20px] block">
-              <ErrorMessage
-                errors={errors}
-                name="confirm_password"
-                render={({ message }) => <Error message={message} />}
-              />
-            </span>
+            <Error field="confirm_password" errors={errors} />
           </Div.fieldGroup>
           <ButtonForm active={true}>Cadastrar</ButtonForm>
           <Div.btnBottom>
