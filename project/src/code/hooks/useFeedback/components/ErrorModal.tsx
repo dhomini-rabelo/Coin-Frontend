@@ -43,8 +43,7 @@ export function ErrorModal({ message, onClose }: ModalComponentProps) {
                     as="h3"
                     className="text-lg font-medium leading-6 text-pBlack-600"
                   >
-                    <div className="flex justify-between items-center flex-wrap">
-                      <strong>Erro</strong>
+                    <div className="flex justify-end items-center flex-wrap">
                       <span onClick={closeModal} className="cursor-pointer">
                         <X size={24} weight="fill" />
                       </span>
@@ -60,7 +59,7 @@ export function ErrorModal({ message, onClose }: ModalComponentProps) {
                   <div className="mt-6">
                     <button
                       onClick={closeModal}
-                      className="w-full py-3 px-2 bg-pBlue-300 hover:bg-Yellow-800 rounded-md text-white text-sm bold leading-relaxed"
+                      className="w-full py-3 px-2 bg-Black-400 hover:opacity-80 rounded-md text-white text-sm bold leading-relaxed"
                       type="button"
                     >
                       FECHAR

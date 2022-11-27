@@ -38,7 +38,7 @@ export function SuccessModal({ message, onClose }: ModalComponentProps) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md p-6 transform overflow-hidden rounded-2xl bg-pGray-100 text-left align-middle shadow-xl transition-all border-solid border-pGray-300 border-2">
+                <Dialog.Panel className="w-full max-w-md p-6 transform overflow-hidden rounded-2xl bg-gray-100 text-left align-middle shadow-xl transition-all border-solid border-pGray-300 border-2">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-pBlack-600"
@@ -63,7 +63,7 @@ export function SuccessModal({ message, onClose }: ModalComponentProps) {
                   <div className="mt-6">
                     <button
                       onClick={closeModal}
-                      className="w-full py-3 px-2 bg-pBlue-300 hover:bg-Yellow-800 rounded-md text-white text-sm bold leading-relaxed"
+                      className="w-full py-3 px-2 bg-Black-400 hover:opacity-80 rounded-md text-white text-sm bold leading-relaxed"
                       type="button"
                     >
                       FECHAR
