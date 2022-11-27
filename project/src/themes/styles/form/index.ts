@@ -185,6 +185,7 @@ export const Div = {
       border-radius: 0.25rem;
       color: #fafafa;
       border-bottom: 1.8px solid transparent;
+      border-top: 1.8px solid transparent;
     }
 
     textarea {
