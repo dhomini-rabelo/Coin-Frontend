@@ -1,7 +1,8 @@
 /* eslint-disable */
 
 export enum ErrorMessages {
-  REQUIRED = 'Este campo é obrigatório'
+  REQUIRED = 'Este campo é obrigatório',
+  INVALID_EMAIL = 'Email inválido',
 }
 
 export const DynamicErrors = {

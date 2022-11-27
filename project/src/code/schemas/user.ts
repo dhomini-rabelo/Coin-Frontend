@@ -11,6 +11,7 @@ export const RegisterUserSchema = zod
   .object({
     email: zod
       .string()
+      .email(ErrorMessages.INVALID_EMAIL)
       .min(1, ErrorMessages.REQUIRED)
       .max(150, DynamicErrors.maxLength(150)),
     password: zod.string().min(8, DynamicErrors.minLength(8)),
