@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Div = {
   container: styled.div`
@@ -8,7 +8,7 @@ export const Div = {
     max-width: 400px;
     margin: 0 auto;
 
-    img[alt="logo"] {
+    img[alt='logo'] {
       width: 8rem;
       height: 8rem;
       margin: 0 auto;
@@ -17,14 +17,15 @@ export const Div = {
     .logoContainer {
       margin-top: 3rem;
     }
-
   `,
 
   select: styled.div`
     background-color: #363636;
     padding-left: 0.5rem;
     max-height: 5.2rem;
-    li, button, div {
+    li,
+    button,
+    div {
       display: block !important;
       color: #fafafa;
       font-size: 14px;
@@ -44,8 +45,9 @@ export const Div = {
   form: styled.div`
     margin-top: 2rem;
     padding: 0 2%;
-    
-    input[type="checkbox"], .checkbox-label {
+
+    input[type='checkbox'],
+    .checkbox-label {
       cursor: pointer;
     }
 
@@ -57,7 +59,7 @@ export const Div = {
     }
 
     /* Firefox */
-    input[type=number] {
+    input[type='number'] {
       -moz-appearance: textfield;
     }
   `,
@@ -66,7 +68,7 @@ export const Div = {
     width: 100% !important;
 
     #buttonComponent {
-      background: #5ED5A8;
+      background: #5ed5a8;
       border-radius: 0.8rem;
       width: 100% !important;
       font-size: 18px;
@@ -95,10 +97,11 @@ export const Div = {
       background-color: #000;
       color: #000;
       animation: dotFlashing 1s infinite linear alternate;
-      animation-delay: .5s;
+      animation-delay: 0.5s;
     }
 
-    .dot-flashing::before, .dot-flashing::after {
+    .dot-flashing::before,
+    .dot-flashing::after {
       content: '';
       display: inline-block;
       position: absolute;
@@ -126,7 +129,7 @@ export const Div = {
       animation: dotFlashing 1s infinite alternate;
       animation-delay: 1s;
     }
-    
+
     @keyframes dotFlashing {
       0% {
         background-color: #000;
@@ -141,7 +144,7 @@ export const Div = {
   fieldGroup: styled.div`
     margin-top: 1.6rem;
 
-    input[type="checkbox"] {
+    input[type='checkbox'] {
       display: inline;
       width: 1.6rem;
       height: 1.6rem;
@@ -163,12 +166,13 @@ export const Div = {
     }
 
     label {
-      color: #A7AFB7;
+      color: #a7afb7;
       font-size: 14px;
       display: block;
     }
-    
-    input, textarea {
+
+    input,
+    textarea {
       height: 5.4rem;
       display: block;
       width: 100%;
@@ -187,19 +191,20 @@ export const Div = {
       height: auto;
       text-indent: 0;
     }
-    
-    input:focus, textarea:focus {
-      border-bottom: 1.8px solid #FFFFFF;
+
+    input:focus,
+    textarea:focus {
+      border-bottom: 1.8px solid #ffffff;
     }
 
     input:disabled {
       background-color: transparent;
     }
-    
-    input::placeholder, textarea::placeholder {
+
+    input::placeholder,
+    textarea::placeholder {
       color: #777777;
     }
-
   `,
 
   forgot: styled.div`
@@ -208,7 +213,7 @@ export const Div = {
     align-items: center;
 
     a {
-      color: #5ED5A8;
+      color: #5ed5a8;
       font-size: 12px;
     }
   `,
@@ -228,13 +233,12 @@ export const Div = {
     display: flex;
     align-items: center;
     min-height: 19px;
-    color: #FF6B6B !important;
-    
+    color: #ff6b6b !important;
+
     span {
-      color: #FF6B6B !important;
+      color: #ff6b6b !important;
       font-size: 12px;
       margin-left: 0.4rem;
     }
   `,
-
-};
+}
