@@ -9,41 +9,41 @@ export const Div = {
     margin: 0 auto;
 
     img[alt='logo'] {
-      width: 8rem;
-      height: 8rem;
+      width: 5rem;
+      height: 5rem;
       margin: 0 auto;
     }
 
     .logoContainer {
-      margin-top: 3rem;
+      margin-top: 1.875rem;
     }
   `,
 
   select: styled.div`
     background-color: #363636;
-    padding-left: 0.5rem;
-    max-height: 5.2rem;
+    padding-left: 0.3125rem;
+    max-height: 3.25rem;
     li,
     button,
     div {
       display: block !important;
       color: #fafafa;
       font-size: 14px;
-      padding-block: 1.6rem;
-      padding-left: 1rem;
-      margin-top: 1rem;
+      padding-block: 1rem;
+      padding-left: 0.625rem;
+      margin-top: 0.625rem;
       cursor: pointer;
     }
     span {
       font-size: 14px;
     }
     svg {
-      margin-right: 0.4rem !important;
+      margin-right: 0.25rem !important;
     }
   `,
 
   form: styled.div`
-    margin-top: 2rem;
+    margin-top: 1.25rem;
     padding: 0 2%;
 
     input[type='checkbox'],
@@ -69,11 +69,11 @@ export const Div = {
 
     #buttonComponent {
       background: #5ed5a8;
-      border-radius: 0.8rem;
+      border-radius: 0.5rem;
       width: 100% !important;
       font-size: 18px;
-      height: 5.4rem;
-      margin-top: 3.2rem;
+      height: 3.375rem;
+      margin-top: 2rem;
       border: none;
     }
 
@@ -142,12 +142,12 @@ export const Div = {
   `,
 
   fieldGroup: styled.div`
-    margin-top: 1.6rem;
+    margin-top: 1rem;
 
     input[type='checkbox'] {
       display: inline;
-      width: 1.6rem;
-      height: 1.6rem;
+      width: 1rem;
+      height: 1rem;
       margin-top: 0;
     }
 
@@ -161,7 +161,7 @@ export const Div = {
       font-size: 20px;
 
       span {
-        margin-left: 0.4rem;
+        margin-left: 0.25rem;
       }
     }
 
@@ -173,21 +173,22 @@ export const Div = {
 
     input,
     textarea {
-      height: 5.4rem;
+      height: 3.375rem;
       display: block;
       width: 100%;
       border: none;
-      margin-top: 0.4rem;
+      margin-top: 0.25rem;
       background-color: #363636;
       font-size: 14px;
-      text-indent: 1rem;
+      text-indent: 0.625rem;
       outline: none;
-      border-radius: 0.4rem;
+      border-radius: 0.25rem;
       color: #fafafa;
+      border-bottom: 1.8px solid transparent;
     }
 
     textarea {
-      padding: 1rem;
+      padding: 0.625rem;
       height: auto;
       text-indent: 0;
     }
@@ -219,7 +220,7 @@ export const Div = {
   `,
 
   btnBottom: styled.div`
-    margin-top: 5.2rem;
+    margin-top: 3.25rem;
     margin-bottom: 10vh;
     text-align: center;
 
@@ -238,7 +239,7 @@ export const Div = {
     span {
       color: #ff6b6b !important;
       font-size: 12px;
-      margin-left: 0.4rem;
+      margin-left: 0.25rem;
     }
   `,
 }
