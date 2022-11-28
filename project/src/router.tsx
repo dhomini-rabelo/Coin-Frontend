@@ -17,9 +17,9 @@ export function Router() {
         <Route element={<AuthenticatedRoutes />}>
           <Route element={<MainTemplate />}>
             <Route path="/perfil" element={<AccountPage />} />
+            <Route path="/contas" element={<BillPage />} />
+            <Route path="/renda" element={<IncomePage />} />
           </Route>
-          <Route path="/contas" element={<BillPage />} />
-          <Route path="/renda" element={<IncomePage />} />
           <Route path="/alertas" element={<NotificationsPage />} />
         </Route>
       </Routes>

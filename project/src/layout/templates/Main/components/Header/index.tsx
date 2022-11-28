@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 export function Header() {
   const isActiveLink = (path: string) => path === document.location.pathname
+  console.log(document.location.pathname)
 
   return (
     <Div.container>
