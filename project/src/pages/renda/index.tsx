@@ -1,9 +1,9 @@
 import { ClockCounterClockwise, ArrowDown, ArrowUp } from 'phosphor-react'
 import { BillBoxList } from '../../components/BillBoxList'
 import { Div, H2, Span } from './styles'
-import { adaptMoney } from '../../_Core/utils/money'
 import { Navigation } from '../../components/Navigation'
 import { Link } from 'react-router-dom'
+import { priceFormatter } from '../../code/utils/formatters'
 
 export function IncomePage() {
   const incomeValue = 2000
@@ -25,16 +25,20 @@ export function IncomePage() {
           <Div.income>
             <H2.income>SALDO ATUAL</H2.income>
             <Span.value isIncome={billValue >= 0}>
-              {adaptMoney(billValue)}
+              {priceFormatter.format(billValue)}
             </Span.value>
           </Div.income>
           <Div.income className="forPC">
             <H2.income>GANHOS</H2.income>
-            <Span.value isIncome={true}>{adaptMoney(incomeValue)}</Span.value>
+            <Span.value isIncome={true}>
+              {priceFormatter.format(incomeValue)}
+            </Span.value>
           </Div.income>
           <Div.income className="forPC">
             <H2.income>GASTOS</H2.income>
-            <Span.value isIncome={false}>{adaptMoney(expenseValue)}</Span.value>
+            <Span.value isIncome={false}>
+              {priceFormatter.format(expenseValue)}
+            </Span.value>
           </Div.income>
           <Div.arrow>
             {percent >= 0 ? (
