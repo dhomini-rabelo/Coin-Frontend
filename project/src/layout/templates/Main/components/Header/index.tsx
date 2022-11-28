@@ -1,6 +1,4 @@
 import { Div } from './styles'
-import Logo from '../../../../../../assets/global/favicon.svg'
-import Bell from '../../../../../../assets/account/bell.svg'
 import { Link } from 'react-router-dom'
 
 export function Header() {
@@ -9,7 +7,7 @@ export function Header() {
   return (
     <Div.container>
       <Div.header>
-        <img src={Logo} alt="logo" />
+        <img src="/core/logo.svg" alt="logo" />
         <Div.nav>
           <Div.link active={isActiveLink('/alertas')}>
             <Link to="/alertas">ALERTAS</Link>
@@ -28,7 +26,7 @@ export function Header() {
             <div className="border-lk"></div>
           </Div.link>
           <div className="headerMobile">
-            <img src={Bell} alt="logo" />
+            <img src="/main_template/bell.svg" alt="logo" />
             <div className="red-circle-notification"></div>
           </div>
         </Div.nav>
