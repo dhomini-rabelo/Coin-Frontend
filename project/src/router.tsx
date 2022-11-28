@@ -6,6 +6,7 @@ import { BillPage } from './pages/contas'
 import { IncomePage } from './pages/renda'
 import { NotificationsPage } from './pages/alertas'
 import { AuthenticatedRoutes } from './code/templates/Auth'
+import { MainTemplate } from './layout/templates/Main'
 
 export function Router() {
   return (
@@ -14,7 +15,9 @@ export function Router() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/cadastro" element={<RegisterPage />} />
         <Route element={<AuthenticatedRoutes />}>
-          <Route path="/perfil" element={<AccountPage />} />
+          <Route element={<MainTemplate />}>
+            <Route path="/perfil" element={<AccountPage />} />
+          </Route>
           <Route path="/contas" element={<BillPage />} />
           <Route path="/renda" element={<IncomePage />} />
           <Route path="/alertas" element={<NotificationsPage />} />
