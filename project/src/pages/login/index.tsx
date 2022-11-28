@@ -1,6 +1,6 @@
-import { Div } from '../../themes/styles/form'
+import { Div } from '../../layout/themes/styles/form'
 import { Link, useNavigate } from 'react-router-dom'
-import { ButtonForm } from '../../themes/styles/form/components/buttons'
+import { ButtonForm } from '../../layout/themes/styles/form/components/buttons'
 import { Error } from '../../components/Error'
 import { useFeedback } from '../../code/hooks/useFeedback'
 import { useForm } from 'react-hook-form'

@@ -1,7 +1,7 @@
-import { Div } from '../../themes/styles/form'
+import { Div } from '../../layout/themes/styles/form'
 import { Link, useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ButtonForm } from '../../themes/styles/form/components/buttons'
+import { ButtonForm } from '../../layout/themes/styles/form/components/buttons'
 import {
   RegisterUserSchema,
   RegisterUserSchemaType,
