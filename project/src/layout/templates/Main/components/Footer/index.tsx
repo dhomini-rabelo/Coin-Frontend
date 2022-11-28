@@ -1,32 +1,29 @@
 import { Div } from './styles'
 import { Money, Wallet, UserCircle } from 'phosphor-react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export function Footer() {
-  const getColor = (path: string) =>
-    document.location.pathname === path ? '#5ed5a8' : '#777777'
-
   return (
     <Div.container>
       <Div.footer>
-        <Link to="/renda">
-          <Div.icon color={getColor('/renda')}>
+        <NavLink to="/renda">
+          <Div.icon>
             <Money size={24} />
             <span>Renda</span>
           </Div.icon>
-        </Link>
-        <Link to="/contas">
-          <Div.icon color={getColor('/contas')}>
+        </NavLink>
+        <NavLink to="/contas">
+          <Div.icon>
             <Wallet size={24} />
             <span>Contas</span>
           </Div.icon>
-        </Link>
-        <Link to="/perfil">
-          <Div.icon color={getColor('/perfil')}>
+        </NavLink>
+        <NavLink to="/perfil">
+          <Div.icon>
             <UserCircle size={24} />
             <span>Perfil</span>
           </Div.icon>
-        </Link>
+        </NavLink>
       </Div.footer>
     </Div.container>
   )

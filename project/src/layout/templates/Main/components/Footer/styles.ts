@@ -26,21 +26,23 @@ export const Div = {
     }
   `,
 
-  icon: styled.div(
-    ({ color }: { color: string }) => `
+  icon: styled.div`
     display: flex;
-    color: ${color};
+    color: #777777;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     cursor: pointer;
-    
+
+    .active > & {
+      color: #5ed5a8;
+    }
+
     span {
       font-size: 14px;
       margin-top: 0.625rem;
     }
   `,
-  ),
 
   dummy: styled.div``,
 }

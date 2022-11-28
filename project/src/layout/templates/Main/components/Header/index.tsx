@@ -1,31 +1,36 @@
 import { Div } from './styles'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export function Header() {
-  const isActiveLink = (path: string) => path === document.location.pathname
-  console.log(document.location.pathname)
-
   return (
     <Div.container>
       <Div.header>
         <img src="/core/logo.svg" alt="logo" />
         <Div.nav>
-          <Div.link active={isActiveLink('/alertas')}>
-            <Link to="/alertas">ALERTAS</Link>
-            <div className="border-lk"></div>
-          </Div.link>
-          <Div.link active={isActiveLink('/renda')}>
-            <Link to="/renda">RENDA</Link>
-            <div className="border-lk"></div>
-          </Div.link>
-          <Div.link active={isActiveLink('/contas')}>
-            <Link to="/contas">CONTAS</Link>
-            <div className="border-lk"></div>
-          </Div.link>
-          <Div.link active={isActiveLink('/perfil')}>
-            <Link to="/perfil">PERFIL</Link>
-            <div className="border-lk"></div>
-          </Div.link>
+          <NavLink to="/renda">
+            <Div.link>
+              <span>RENDA</span>
+              <div className="border-lk"></div>
+            </Div.link>
+          </NavLink>
+          <NavLink to="/contas">
+            <Div.link>
+              <span>CONTAS</span>
+              <div className="border-lk"></div>
+            </Div.link>
+          </NavLink>
+          <NavLink to="/alertas">
+            <Div.link>
+              <span>ALERTAS</span>
+              <div className="border-lk"></div>
+            </Div.link>
+          </NavLink>
+          <NavLink to="/perfil">
+            <Div.link>
+              <span>PERFIL</span>
+              <div className="border-lk"></div>
+            </Div.link>
+          </NavLink>
           <div className="headerMobile">
             <img src="/main_template/bell.svg" alt="logo" />
             <div className="red-circle-notification"></div>

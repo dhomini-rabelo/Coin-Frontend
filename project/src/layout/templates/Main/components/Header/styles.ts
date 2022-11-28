@@ -62,29 +62,31 @@ export const Div = {
     }
   `,
 
-  link: styled.div(
-    ({ active }: { active: boolean }) => `
+  link: styled.div`
     margin-left: 1.25rem;
-  
-    a {
-        color: #fafafa;
-        font-size: 22px;
+
+    span {
+      color: #fafafa;
+      font-size: 22px;
     }
 
-    a:hover {
+    span:hover {
       color: #5ed5a8;
     }
 
     .border-lk {
-      background-color: ${active ? '#fafafa' : 'transparent'};
+      background-color: transparent;
       height: 0.125rem;
       margin: 0 auto;
       margin-top: 0.25rem;
       width: 60%;
       border-radius: 0.3125rem;
     }
+
+    .active > & .border-lk {
+      background-color: #fafafa;
+    }
   `,
-  ),
 
   dummy: styled.div``,
 }
