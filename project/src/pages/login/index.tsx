@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { client } from '../../core/settings'
 import { useContext } from 'react'
 import { AuthContext } from '../../code/contexts/Auth'
+import { showErrorMessages } from '../../code/utils/errors'
 
 export function LoginPage() {
   const {
@@ -39,15 +40,12 @@ export function LoginPage() {
       })
       .catch((error) => {
         if (error.response.status === 400) {
-          const formDataErrors = error.response.data
           renderFeedback('error', 'Dados inválidos')
-          Object.entries(formDataErrors).forEach(
-            ([fieldNameArray, fieldErrorsArray]) => {
-              const fieldName = fieldNameArray as keyof typeof data
-              const fieldErrors = fieldErrorsArray as string[]
-              reset(data)
-              setError(fieldName, { type: 'custom', message: fieldErrors[0] })
-            },
+          showErrorMessages<LoginSchemaType>(
+            error.response.data,
+            data,
+            setError,
+            reset,
           )
         } else if (error.response.status === 401) {
           reset(data)

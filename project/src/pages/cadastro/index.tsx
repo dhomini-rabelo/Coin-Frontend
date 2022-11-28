@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form'
 import { Error } from '../../components/Error'
 import { useFeedback } from '../../code/hooks/useFeedback'
 import { client } from '../../core/settings'
+import { showErrorMessages } from '../../code/utils/errors'
 
 export function RegisterPage() {
   const navigateTo = useNavigate()
@@ -34,15 +35,11 @@ export function RegisterPage() {
         })
       })
       .catch((error) => {
-        const formDataErrors = error.response.data
-        renderFeedback('error', 'Dados inválidos')
-        Object.entries(formDataErrors).forEach(
-          ([fieldNameArray, fieldErrorsArray]) => {
-            const fieldName = fieldNameArray as keyof typeof data
-            const fieldErrors = fieldErrorsArray as string[]
-            reset(data)
-            setError(fieldName, { type: 'custom', message: fieldErrors[0] })
-          },
+        showErrorMessages<RegisterUserSchemaType>(
+          error.response.data,
+          data,
+          setError,
+          reset,
         )
       })
   }
@@ -83,7 +80,7 @@ export function RegisterPage() {
           </Div.fieldGroup>
           <ButtonForm onFetch={isSubmitSuccessful}>Cadastrar</ButtonForm>
           <Div.btnBottom>
-            <Link to="/login">Fazer login</Link>
+            <Link to="/">Fazer login</Link>
           </Div.btnBottom>
         </form>
       </Div.form>
