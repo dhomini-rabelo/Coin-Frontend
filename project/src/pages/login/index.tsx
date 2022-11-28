@@ -1,63 +1,94 @@
 import { Div } from '../../themes/styles/form'
 import { Link, useNavigate } from 'react-router-dom'
 import { ButtonForm } from '../../themes/styles/form/components/buttons'
+import { Error } from '../../components/Error'
 import { useFeedback } from '../../code/hooks/useFeedback'
 import { useForm } from 'react-hook-form'
 import { LoginSchema, LoginSchemaType } from '../../code/schemas/login'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { client } from '../../core/settings'
+import { useContext } from 'react'
+import { AuthContext } from '../../code/contexts/Auth'
 
 export function LoginPage() {
-  // const navigateTo = useNavigate()
-  // const { FeedbackElement, renderFeedback } = useFeedback()
-  // const registerForm = useForm<LoginSchemaType>({
-  //   resolver: zodResolver(LoginSchema),
-  // })
-  // const {
-  //   handleSubmit,
-  //   formState: { errors, isSubmitSuccessful },
-  //   register,
-  //   setError,
-  //   reset,
-  // } = registerForm
+  const {
+    actions: { login },
+  } = useContext(AuthContext)
+  const navigateTo = useNavigate()
+  const { FeedbackElement, renderFeedback } = useFeedback()
+  const LoginForm = useForm<LoginSchemaType>({
+    resolver: zodResolver(LoginSchema),
+  })
+  const {
+    handleSubmit,
+    formState: { errors, isSubmitSuccessful },
+    register,
+    setError,
+    reset,
+  } = LoginForm
+
+  function onValidSubmit(data: LoginSchemaType) {
+    client
+      .post('get-token', {
+        username: data.email,
+        password: data.password,
+      })
+      .then((response) => {
+        login(data.email, response.data.access)
+        navigateTo('/renda')
+      })
+      .catch((error) => {
+        if (error.response.status === 400) {
+          const formDataErrors = error.response.data
+          renderFeedback('error', 'Dados inválidos')
+          Object.entries(formDataErrors).forEach(
+            ([fieldNameArray, fieldErrorsArray]) => {
+              const fieldName = fieldNameArray as keyof typeof data
+              const fieldErrors = fieldErrorsArray as string[]
+              reset(data)
+              setError(fieldName, { type: 'custom', message: fieldErrors[0] })
+            },
+          )
+        } else if (error.response.status === 401) {
+          reset(data)
+          renderFeedback('error', 'Credenciais incorretas')
+        } else {
+          renderFeedback('error', 'Server Error')
+        }
+      })
+  }
+
   return (
     <Div.container>
+      {FeedbackElement}
       <div className="logoContainer">
         <img src="/core/logo.svg" alt="logo" />
       </div>
       <Div.form>
-        <Div.fieldGroup>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Digite seu email"
-          />
-          <Div.error>
-            <img src="/forms/error.svg" alt="error-icon" />
-            <span>Este campo é obrigatório</span>
-          </Div.error>
-        </Div.fieldGroup>
-        <Div.fieldGroup>
-          <label htmlFor="password">Senha</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Digite sua senha"
-          />
-          <Div.forgot>
-            <Div.error>
-              <img src="/forms/error.svg" alt="error-icon" />
-              <span>Este campo é obrigatório</span>
-            </Div.error>
-            <a href="#">Esqueceu a senha?</a>
-          </Div.forgot>
-        </Div.fieldGroup>
-        <ButtonForm>Entrar</ButtonForm>
-        <Div.btnBottom>
-          <Link to="/cadastro">Criar uma conta</Link>
-        </Div.btnBottom>
+        <form onSubmit={handleSubmit(onValidSubmit)}>
+          <Div.fieldGroup>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              placeholder="Digite seu email"
+              {...register('email')}
+            />
+            <Error field="email" errors={errors} />
+          </Div.fieldGroup>
+          <Div.fieldGroup>
+            <label htmlFor="password">Senha</label>
+            <input
+              type="password"
+              placeholder="Digite sua senha"
+              {...register('password')}
+            />
+            <Error field="password" errors={errors} />
+          </Div.fieldGroup>
+          <ButtonForm onFetch={isSubmitSuccessful}>Entrar</ButtonForm>
+          <Div.btnBottom>
+            <Link to="/cadastro">Criar uma conta</Link>
+          </Div.btnBottom>
+        </form>
       </Div.form>
     </Div.container>
   )
