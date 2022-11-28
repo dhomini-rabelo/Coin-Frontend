@@ -1,13 +1,5 @@
-import { AccountPagesModel } from '../../themes/pages/account';
-import {Div, H1} from './styles';
-
+import { Div } from './styles'
 
 export function NotificationsPage() {
-  return (
-    <AccountPagesModel>
-      <Div.container>
-      </Div.container>
-
-    </AccountPagesModel>
-  );
+  return <Div.container></Div.container>
 }

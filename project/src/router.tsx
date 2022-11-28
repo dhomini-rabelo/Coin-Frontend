@@ -16,11 +16,11 @@ export function Router() {
         <Route path="/cadastro" element={<RegisterPage />} />
         <Route element={<AuthenticatedRoutes />}>
           <Route element={<MainTemplate />}>
-            <Route path="/perfil" element={<AccountPage />} />
-            <Route path="/contas" element={<BillPage />} />
             <Route path="/renda" element={<IncomePage />} />
+            <Route path="/contas" element={<BillPage />} />
+            <Route path="/alertas" element={<NotificationsPage />} />
+            <Route path="/perfil" element={<AccountPage />} />
           </Route>
-          <Route path="/alertas" element={<NotificationsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
