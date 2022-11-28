@@ -1,6 +1,6 @@
 import { Clock } from 'phosphor-react'
-import { priceFormatter } from '../../../../code/utils/formatters'
-import { Div, H2, Span } from './../../styles'
+import { priceFormatter } from '../../../../../code/utils/formatters'
+import { Div, H2, Span } from '../../styles'
 
 export function BillBoxItem({
   title,

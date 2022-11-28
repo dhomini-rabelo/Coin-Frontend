@@ -1,10 +1,10 @@
 import { Div } from './styles'
 import { Div as FormDiv } from '../../layout/themes/styles/form'
-import { SimpleBox } from '../../components/SimpleBox'
+import { SimpleBox } from '../../layout/components/SimpleBox'
 import { Envelope, LockSimple, Watch } from 'phosphor-react'
-import { SimplePopover } from '../../components/Popovers/SimplePopover'
+import { SimplePopover } from '../../layout/components/Popovers/SimplePopover'
 import { ButtonForm } from '../../layout/themes/styles/form/components/buttons'
-import { SimpleSelect } from '../../components/Select/simple'
+import { SimpleSelect } from '../../layout/components/Select/simple'
 
 export function AccountPage() {
   return (

@@ -7,7 +7,7 @@ import {
   RegisterUserSchemaType,
 } from '../../code/schemas/user'
 import { useForm } from 'react-hook-form'
-import { Error } from '../../components/Error'
+import { Error } from '../../layout/components/Error'
 import { useFeedback } from '../../code/hooks/useFeedback'
 import { client } from '../../core/settings'
 import { showErrorMessages } from '../../code/utils/errors'

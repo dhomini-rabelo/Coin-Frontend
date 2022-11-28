@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Div = {
-    box: styled.div(({ color }: { color: string }) => `
+  box: styled.div(
+    ({ color }: { color: string }) => `
     border: 3.2px solid ${color};
     color: #fff;
     display: flex;
@@ -27,13 +28,14 @@ export const Div = {
       justify-content: center;
       width: 100%;
     }
-  `),
+  `,
+  ),
 
   title: styled.div`
     font-size: 44px;
     margin-right: 2rem;
 
-    @media(min-width: 500px) {
+    @media (min-width: 500px) {
       font-size: 64px;
     }
   `,
@@ -48,12 +50,13 @@ export const Div = {
       white-space: nowrap;
     }
 
-    @media(min-width: 500px) {
+    @media (min-width: 500px) {
       font-size: 48px;
     }
   `,
 
-  percent: styled.div(({ color }: { color: string }) => `
+  percent: styled.div(
+    ({ color }: { color: string }) => `
       color: ${color};
       font-size: 22px;
       display: flex;
@@ -72,5 +75,6 @@ export const Div = {
           height: 24px !important;
         }
       }
-  `),
-};
+  `,
+  ),
+}

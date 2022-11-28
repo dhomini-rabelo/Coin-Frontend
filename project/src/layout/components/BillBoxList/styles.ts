@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Div = {
   container: styled.div`
@@ -12,12 +12,12 @@ export const Div = {
     margin-top: 3.2rem;
     width: 45%;
     cursor: pointer;
-    
+
     &:first-child {
       margin-top: 2.6rem;
     }
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       width: 100%;
     }
   `,
@@ -33,30 +33,29 @@ export const Div = {
   `,
 
   a: styled.div``,
-};
+}
 
 export const H2 = {
-
-    title: styled.h1`
-      color: #C1C7CD;
-      font-size: 14px;
-      max-width: 70%;
-      overflow-x: hidden;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    `,
-  
+  title: styled.h1`
+    color: #c1c7cd;
+    font-size: 14px;
+    max-width: 70%;
+    overflow-x: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  `,
 }
 
 export const Span = {
-
-  value: styled.span(({isIncome}: {isIncome: boolean}) => `
+  value: styled.span(
+    ({ isIncome }: { isIncome: boolean }) => `
     max-width: 30%;
     font-weight: 700;
-    color: ${isIncome ? '#5ED5A8': '#FF6B6B'};
+    color: ${isIncome ? '#5ED5A8' : '#FF6B6B'};
     font-size: 14px;
-  `),
+  `,
+  ),
 
   description: styled.span`
     font-weight: 400;
@@ -70,5 +69,4 @@ export const Span = {
     overflow: hidden;
     text-overflow: ellipsis;
   `,
-  
 }

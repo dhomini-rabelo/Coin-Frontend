@@ -1,6 +1,6 @@
 import { ErrorMessage } from '@hookform/error-message'
 import { FieldErrorsImpl } from 'react-hook-form'
-import { Div } from '../../layout/themes/styles/form'
+import { Div } from '../../themes/styles/form'
 
 export function Error({
   errors,

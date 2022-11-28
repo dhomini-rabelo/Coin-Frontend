@@ -1,13 +1,16 @@
 import { Funnel, Plus } from 'phosphor-react'
-import { BillBoxList } from '../../components/BillBoxList'
-import { SimpleButton } from '../../components/Buttons/simple'
-import { SimplePopover } from '../../components/Popovers/SimplePopover'
+import { BillBoxList } from '../../layout/components/BillBoxList'
+import { SimpleButton } from '../../layout/components/Buttons/simple'
+import { SimplePopover } from '../../layout/components/Popovers/SimplePopover'
 import { Div, H1, Button } from './styles'
 import { Div as FormDiv } from '../../layout/themes/styles/form'
 import { ButtonForm } from '../../layout/themes/styles/form/components/buttons'
 import { ReactNode } from 'react'
-import { ChildrenSelect, SimpleSelect } from '../../components/Select/simple'
-import { CircleIcon } from '../../components/Icons/circle'
+import {
+  ChildrenSelect,
+  SimpleSelect,
+} from '../../layout/components/Select/simple'
+import { CircleIcon } from '../../layout/components/Icons/circle'
 
 export function BillPage() {
   return (

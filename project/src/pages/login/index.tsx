@@ -1,7 +1,7 @@
 import { Div } from '../../layout/themes/styles/form'
 import { Link, useNavigate } from 'react-router-dom'
 import { ButtonForm } from '../../layout/themes/styles/form/components/buttons'
-import { Error } from '../../components/Error'
+import { Error } from '../../layout/components/Error'
 import { useFeedback } from '../../code/hooks/useFeedback'
 import { useForm } from 'react-hook-form'
 import { LoginSchema, LoginSchemaType } from '../../code/schemas/login'
