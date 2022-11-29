@@ -3,8 +3,33 @@ import { SimpleBox } from '../../../layout/components/SimpleBox'
 import { Div as FormDiv } from '../../../layout/themes/styles/form'
 import { Envelope } from 'phosphor-react'
 import { ButtonForm } from '../../../layout/themes/styles/form/components/buttons'
+import { AuthContext } from '../../../code/contexts/Auth'
+import { useContext } from 'react'
+import { useForm } from 'react-hook-form'
+import {
+  ChangeEmailSchema,
+  ChangeEmailSchemaType,
+} from '../../../code/schemas/profile/changeEmail'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Error } from '../../../layout/components/Error'
 
 export function ChangeEmailForm() {
+  const {
+    auth: { email },
+  } = useContext(AuthContext)
+  const changeEmailFormHook = useForm<ChangeEmailSchemaType>({
+    resolver: zodResolver(ChangeEmailSchema),
+  })
+  const {
+    handleSubmit,
+    formState: { errors, isSubmitSuccessful },
+    register,
+    setError,
+    reset,
+  } = changeEmailFormHook
+
+  function onValidSubmit(data: ChangeEmailSchemaType) { }
+
   return (
     <SimplePopover
       button={
@@ -16,37 +41,38 @@ export function ChangeEmailForm() {
       }
     >
       <FormDiv.form>
-        <FormDiv.fieldGroup>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Digite seu email"
-          />
-          <FormDiv.error></FormDiv.error>
-        </FormDiv.fieldGroup>
-        <FormDiv.fieldGroup>
-          <label htmlFor="new-email">Novo Email</label>
-          <input
-            type="email"
-            name="new-email"
-            id="new-email"
-            placeholder="Digite seu novo email"
-          />
-          <FormDiv.error></FormDiv.error>
-        </FormDiv.fieldGroup>
-        <FormDiv.fieldGroup>
-          <label htmlFor="confirm-new-email">Confirmar Email</label>
-          <input
-            type="email"
-            name="confirm-new-email"
-            id="confirm-new-email"
-            placeholder="Confirme seu novo email"
-          />
-          <FormDiv.error></FormDiv.error>
-        </FormDiv.fieldGroup>
-        <ButtonForm>Confirmar</ButtonForm>
+        <form onSubmit={handleSubmit(onValidSubmit)}>
+          <FormDiv.fieldGroup>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              disabled
+              value={email}
+            />
+            <FormDiv.error></FormDiv.error>
+          </FormDiv.fieldGroup>
+          <FormDiv.fieldGroup>
+            <label htmlFor="new-email">Novo Email</label>
+            <input
+              type="email"
+              placeholder="Digite seu novo email"
+              {...register('new_email')}
+            />
+            <Error field="new_email" errors={errors} />
+          </FormDiv.fieldGroup>
+          <FormDiv.fieldGroup>
+            <label htmlFor="confirm-new-email">Confirmar Email</label>
+            <input
+              type="email"
+              placeholder="Confirme seu novo email"
+              {...register('confirm_new_email')}
+            />
+            <Error field="confirm_new_email" errors={errors} />
+          </FormDiv.fieldGroup>
+          <ButtonForm>Confirmar</ButtonForm>
+        </form>
       </FormDiv.form>
     </SimplePopover>
   )
