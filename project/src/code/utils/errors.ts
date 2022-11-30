@@ -5,14 +5,19 @@ export function showErrorMessages<SchemaType>(
   fieldsData: SchemaType,
   setError: (fieldName: keyof SchemaType, errorOptions: ErrorOption) => void,
   reset: (data: SchemaType) => void,
+  adapterFields: { [fieldName: string]: string } = {},
 ) {
   reset(fieldsData)
   Object.entries(apiFormErrors).forEach(
     ([fieldNameArray, fieldErrorsArray]) => {
       const fieldErrors = fieldErrorsArray as string[]
-      if (fieldNameArray in fieldsData) {
-        const fieldName = fieldNameArray as keyof SchemaType
-        setError(fieldName!, { type: 'custom', message: fieldErrors[0] })
+      const adaptedFieldName = (
+        fieldNameArray in adapterFields
+          ? adapterFields[fieldNameArray]
+          : fieldNameArray
+      ) as keyof SchemaType
+      if (adaptedFieldName in fieldsData) {
+        setError(adaptedFieldName!, { type: 'custom', message: fieldErrors[0] })
       } else {
         throw new Error(`Invalid error key => ${fieldNameArray} `)
       }
