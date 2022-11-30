@@ -18,8 +18,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     authDispatch(AuthConsumer.login(email, token))
   }
 
+  function logout() {
+    authDispatch(AuthConsumer.logout())
+  }
+
   return (
-    <AuthContext.Provider value={{ auth, actions: { login } }}>
+    <AuthContext.Provider value={{ auth, actions: { login, logout } }}>
       {children}
     </AuthContext.Provider>
   )

@@ -12,5 +12,10 @@ export function AuthReducer(
         token: action.payload.token,
         email: action.payload.email,
       }
+    case AuthActions.LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+      }
   }
 }

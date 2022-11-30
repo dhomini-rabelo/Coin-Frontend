@@ -1,6 +1,7 @@
 /* eslint-disable */
 export enum AuthActions {
-  LOGIN = 'LOGIN'
+  LOGIN = 'LOGIN',
+  LOGOUT = 'LOGOUT'
 }
 /* eslint-enable */
 
@@ -12,6 +13,11 @@ export const AuthConsumer = {
         email,
         token,
       },
+    }
+  },
+  logout() {
+    return {
+      type: AuthActions.LOGOUT,
     }
   },
 }
