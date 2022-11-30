@@ -15,11 +15,14 @@ import { Error } from '../../../layout/components/Error'
 import { client } from '../../../core/settings'
 import { useFeedback } from '../../../code/hooks/useFeedback'
 import { showErrorMessages } from '../../../code/utils/errors'
+import { useNavigate } from 'react-router-dom'
 
 export function ChangeEmailForm() {
+  const navigateTo = useNavigate()
   const { FeedbackElement, renderFeedback } = useFeedback()
   const {
     auth: { email },
+    actions: { logout },
   } = useContext(AuthContext)
   const changeEmailFormHook = useForm<ChangeEmailSchemaType>({
     resolver: zodResolver(ChangeEmailSchema),
@@ -38,9 +41,9 @@ export function ChangeEmailForm() {
         email: data.new_email,
       })
       .then((response) => {
-        // setEmail(data.new_email)
         renderFeedback('success', 'Email alterado com sucesso', () => {
-          // logout()
+          logout()
+          navigateTo('/')
         })
       })
       .catch((error) => {
@@ -50,6 +53,7 @@ export function ChangeEmailForm() {
             data,
             setError,
             reset,
+            { email: 'new_email' },
           )
         } else if (error.response.status === 401) {
           reset(data)
