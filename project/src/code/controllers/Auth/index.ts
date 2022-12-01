@@ -8,7 +8,7 @@ import {
   ResponseAuthStructureType,
 } from './types'
 import { differenceInSeconds } from 'date-fns'
-
+import axios, { AxiosError, AxiosInstance } from 'axios'
 class AuthController {
   private tokensSaveKey: string
   private refreshTokenTimeoutInSeconds: number
@@ -22,11 +22,74 @@ class AuthController {
     this.refreshTokenTimeoutInSeconds = refreshTokenTimeoutInSeconds
   }
 
-  getAuthorizationHeaderFromAccessToken(accessToken: string) {
+  private getAuthorizationHeaderFromAccessToken(accessToken: string) {
     return `Bearer ${accessToken}`
   }
 
-  saveAuthInstance(authInstance: AuthStructureType) {
+  private setAuthHeader(
+    client: AxiosInstance,
+    authInstance: AuthStructureType,
+  ) {
+    client.defaults.headers.common.Authorization =
+      this.getAuthorizationHeaderFromAccessToken(authInstance.accessToken)
+    this.saveAuthInstance({
+      accessToken: authInstance.accessToken,
+      refreshToken: authInstance.refreshToken,
+      email: authInstance.email,
+    })
+  }
+
+  private setResponseInterceptorForAuthenticatedUserClient(
+    client: AxiosInstance,
+    currentEmail: string,
+  ) {
+    client.interceptors.response.use(
+      (response) => response,
+      async (error: AxiosError) => {
+        if (error.response?.status && error.response.status === 401) {
+          let tokenWasRefreshed = false
+          const authInstance = this.getAuthInstance()
+          if (authInstance.isAuthenticated) {
+            try {
+              const response = await axios.post(
+                `${client.defaults.baseURL}/refresh-token`,
+                {
+                  refresh: authInstance.refreshToken,
+                },
+              ) // diff axios instance without interceptor
+              this.setAuthHeader(client, {
+                accessToken: response.data.access,
+                refreshToken: response.data.refresh,
+                email: currentEmail,
+              })
+              tokenWasRefreshed = true
+            } catch (error) {
+              return Promise.reject(error)
+            }
+
+            if (tokenWasRefreshed) {
+              return client({
+                url: error.config.url,
+                method: error.config.method,
+                data: JSON.parse(error.config.data),
+              })
+            }
+          }
+        }
+        return Promise.reject(error)
+      },
+    )
+  }
+
+  configureAuthClient(client: AxiosInstance, authInstance: AuthStructureType) {
+    this.setAuthHeader(client, authInstance)
+    this.setResponseInterceptorForAuthenticatedUserClient(
+      client,
+      authInstance.email,
+    )
+  }
+
+  private saveAuthInstance(authInstance: AuthStructureType) {
     const authInstanceForSave: SavedAuthStructureType = {
       ...authInstance,
       savedAt: new Date().toISOString(),
