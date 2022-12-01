@@ -1,27 +1,29 @@
-import { applicationName, tokenTimeoutInSeconds } from '../../../core/settings'
-import { AuthType } from '../../contexts/Auth/reducer/types'
-import { SavedAuthStructureType, AuthStructureType } from './types'
+import {
+  applicationName,
+  refreshTokenTimeoutInSeconds as settingsRefreshTokenTimeoutInSeconds,
+} from '../../../core/settings'
+import {
+  SavedAuthStructureType,
+  AuthStructureType,
+  ResponseAuthStructureType,
+} from './types'
 import { differenceInSeconds } from 'date-fns'
 
 class AuthController {
   private tokensSaveKey: string
-  private accessTokenTimeoutInSeconds: number
+  private refreshTokenTimeoutInSeconds: number
 
   constructor(
-    accessTokenTimeoutInSeconds: number,
+    refreshTokenTimeoutInSeconds: number,
     applicationName: string,
     authSaveKeyName: string = 'auth',
   ) {
     this.tokensSaveKey = `@${applicationName}-${authSaveKeyName}`
-    this.accessTokenTimeoutInSeconds = accessTokenTimeoutInSeconds
+    this.refreshTokenTimeoutInSeconds = refreshTokenTimeoutInSeconds
   }
 
   getAuthorizationHeaderFromAccessToken(accessToken: string) {
     return `Bearer ${accessToken}`
-  }
-
-  getAccessTokenFromAuthorizationHeader(authorizationHeader: string) {
-    return authorizationHeader.slice(7)
   }
 
   saveAuthInstance(authInstance: AuthStructureType) {
@@ -35,7 +37,7 @@ class AuthController {
     )
   }
 
-  getAuthInstance(): AuthType {
+  getAuthInstance(): ResponseAuthStructureType {
     const savedInstance: null | string = localStorage.getItem(
       this.tokensSaveKey,
     )
@@ -44,12 +46,16 @@ class AuthController {
     if (!authInstance || this.tokenWasExpired(authInstance.savedAt)) {
       return {
         isAuthenticated: false,
+        accessToken: '',
+        refreshToken: '',
         email: '',
       }
     } else {
       return {
         isAuthenticated: true,
         email: authInstance.email,
+        accessToken: authInstance.accessToken,
+        refreshToken: authInstance.refreshToken,
       }
     }
   }
@@ -58,12 +64,12 @@ class AuthController {
     const savedAuthInstanceDate = new Date(savedAtIsoDate)
     return (
       differenceInSeconds(new Date(), savedAuthInstanceDate) >=
-      this.accessTokenTimeoutInSeconds - 10
+      this.refreshTokenTimeoutInSeconds - 10
     )
   }
 }
 
 export const authController = new AuthController(
-  tokenTimeoutInSeconds,
+  settingsRefreshTokenTimeoutInSeconds,
   applicationName,
 )

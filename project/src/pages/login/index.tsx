@@ -35,7 +35,7 @@ export function LoginPage() {
         password: data.password,
       })
       .then((response) => {
-        login(data.email, response.data.access)
+        login(data.email, response.data.access, response.data.refresh)
         navigateTo('/renda')
       })
       .catch((error) => {

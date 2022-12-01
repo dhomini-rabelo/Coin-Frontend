@@ -5,3 +5,5 @@ export const client = axios.create({
 })
 
 export const applicationName = 'COIN'
+
+export const refreshTokenTimeoutInSeconds = 60 * 60 * 4 // 4 hours
