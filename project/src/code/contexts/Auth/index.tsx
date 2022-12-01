@@ -8,14 +8,13 @@ export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [auth, authDispatch] = useReducer(AuthReducer, {
-    token: '',
     isAuthenticated: false,
     email: '',
   })
 
   function login(email: string, token: string) {
+    authDispatch(AuthConsumer.login(email))
     client.defaults.headers.common.Authorization = `Bearer ${token}`
-    authDispatch(AuthConsumer.login(email, token))
   }
 
   function logout() {

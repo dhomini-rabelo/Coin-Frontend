@@ -9,12 +9,10 @@ export function AuthReducer(
     case AuthActions.LOGIN:
       return {
         isAuthenticated: true,
-        token: action.payload.token,
         email: action.payload.email,
       }
     case AuthActions.LOGOUT:
       return {
-        token: '',
         isAuthenticated: false,
         email: '',
       }

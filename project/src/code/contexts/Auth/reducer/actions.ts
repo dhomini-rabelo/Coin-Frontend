@@ -6,12 +6,11 @@ export enum AuthActions {
 /* eslint-enable */
 
 export const AuthConsumer = {
-  login(email: string, token: string) {
+  login(email: string) {
     return {
       type: AuthActions.LOGIN,
       payload: {
         email,
-        token,
       },
     }
   },
