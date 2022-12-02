@@ -100,13 +100,23 @@ class AuthController {
     )
   }
 
+  killAuthInstance() {
+    localStorage.removeItem(this.tokensSaveKey)
+  }
+
   getAuthInstance(): ResponseAuthStructureType {
     const savedInstance: null | string = localStorage.getItem(
       this.tokensSaveKey,
     )
     const authInstance: null | SavedAuthStructureType =
       savedInstance && JSON.parse(savedInstance)
-    if (!authInstance || this.tokenWasExpired(authInstance.savedAt)) {
+
+    if (
+      !authInstance ||
+      !authInstance.email ||
+      this.tokenWasExpired(authInstance.savedAt)
+    ) {
+      this.killAuthInstance()
       return {
         isAuthenticated: false,
         accessToken: '',

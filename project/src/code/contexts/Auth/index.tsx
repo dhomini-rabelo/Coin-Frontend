@@ -17,7 +17,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     () => {
       const authInstance = authController.getAuthInstance()
       authController.configureAuthClient(client, authInstance)
-      console.log(authInstance)
       return {
         isAuthenticated: authInstance.isAuthenticated,
         email: authInstance.email,
@@ -36,6 +35,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   function logout() {
     authDispatch(AuthConsumer.logout())
+    authController.killAuthInstance()
+    window.location.href = '/' // move to login page
   }
 
   return (
