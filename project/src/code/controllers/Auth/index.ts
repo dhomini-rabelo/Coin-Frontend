@@ -58,8 +58,8 @@ class AuthController {
                 },
               ) // diff axios instance without interceptor
               this.setAuthHeader(client, {
-                accessToken: response.data.access,
-                refreshToken: response.data.refresh,
+                accessToken: response.data.tokens.access,
+                refreshToken: response.data.tokens.refresh,
                 email: currentEmail,
               })
               tokenWasRefreshed = true
