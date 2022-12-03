@@ -37,6 +37,7 @@ export function LoginPage() {
       .then((response) => {
         login(
           data.email,
+          response.data.user.notification_time,
           response.data.tokens.access,
           response.data.tokens.refresh,
         )

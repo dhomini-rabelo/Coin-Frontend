@@ -5,4 +5,6 @@ export const notificationTimeChoices = {
   '20': '20h',
 } as const
 
+export type notificationTimeChoicesType = keyof typeof notificationTimeChoices
+
 export const notificationTimeChoicesValues = ['8', '12', '16', '20'] as const // zod

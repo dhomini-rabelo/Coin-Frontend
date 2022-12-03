@@ -5,6 +5,7 @@ import { AuthConsumer } from './reducer/actions'
 import { AuthContextType } from './types'
 import { authController } from '../../controllers/Auth'
 import { AuthType } from './reducer/types'
+import { notificationTimeChoicesType } from '../../models/support/choices'
 
 export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
@@ -27,8 +28,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
   )
 
-  function login(email: string, accessToken: string, refreshToken: string) {
-    authDispatch(AuthConsumer.login(email))
+  function login(
+    email: string,
+    notificationTime: notificationTimeChoicesType,
+    accessToken: string,
+    refreshToken: string,
+  ) {
+    authDispatch(AuthConsumer.login(email, notificationTime))
     authController.configureAuthClient(client, {
       email,
       accessToken,
