@@ -1,7 +1,10 @@
+import { notificationTimeChoicesType } from '../../models/support/choices'
+
 export interface AuthStructureType {
   accessToken: string
   refreshToken: string
   email: string
+  notificationTime: notificationTimeChoicesType
 }
 
 export interface SavedAuthStructureType extends AuthStructureType {

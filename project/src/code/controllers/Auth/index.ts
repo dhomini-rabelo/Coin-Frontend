@@ -9,6 +9,8 @@ import {
 } from './types'
 import { differenceInSeconds } from 'date-fns'
 import axios, { AxiosError, AxiosInstance } from 'axios'
+import { notificationTimeChoicesType } from '../../models/support/choices'
+
 class AuthController {
   private tokensSaveKey: string
   private refreshTokenTimeoutInSeconds: number
@@ -36,12 +38,14 @@ class AuthController {
       accessToken: authInstance.accessToken,
       refreshToken: authInstance.refreshToken,
       email: authInstance.email,
+      notificationTime: authInstance.notificationTime,
     })
   }
 
   private setResponseInterceptorForAuthenticatedUserClient(
     client: AxiosInstance,
     currentEmail: string,
+    currentNotificationTime: notificationTimeChoicesType,
   ) {
     client.interceptors.response.use(
       (response) => response,
@@ -61,6 +65,7 @@ class AuthController {
                 accessToken: response.data.tokens.access,
                 refreshToken: response.data.tokens.refresh,
                 email: currentEmail,
+                notificationTime: currentNotificationTime,
               })
               tokenWasRefreshed = true
             } catch (error) {
@@ -86,10 +91,11 @@ class AuthController {
     this.setResponseInterceptorForAuthenticatedUserClient(
       client,
       authInstance.email,
+      authInstance.notificationTime,
     )
   }
 
-  private saveAuthInstance(authInstance: AuthStructureType) {
+  saveAuthInstance(authInstance: AuthStructureType) {
     const authInstanceForSave: SavedAuthStructureType = {
       ...authInstance,
       savedAt: new Date().toISOString(),
@@ -122,6 +128,7 @@ class AuthController {
         accessToken: '',
         refreshToken: '',
         email: '',
+        notificationTime: '8',
       }
     } else {
       return {
@@ -129,6 +136,7 @@ class AuthController {
         email: authInstance.email,
         accessToken: authInstance.accessToken,
         refreshToken: authInstance.refreshToken,
+        notificationTime: authInstance.notificationTime,
       }
     }
   }

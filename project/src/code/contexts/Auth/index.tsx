@@ -23,7 +23,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return {
         isAuthenticated: authInstance.isAuthenticated,
         email: authInstance.email,
-        notificationTime: '8',
+        notificationTime: authInstance.notificationTime,
       }
     },
   )
@@ -37,6 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     authDispatch(AuthConsumer.login(email, notificationTime))
     authController.configureAuthClient(client, {
       email,
+      notificationTime,
       accessToken,
       refreshToken,
     })
@@ -49,6 +50,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   function setNotificationTime(notificationTime: notificationTimeChoicesType) {
     authDispatch(AuthConsumer.setNotificationTime(notificationTime))
+    const authInstance = authController.getAuthInstance()
+    authController.saveAuthInstance({
+      ...authInstance,
+      notificationTime,
+    })
   }
 
   return (
