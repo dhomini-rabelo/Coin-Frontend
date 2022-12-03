@@ -4,6 +4,7 @@ import { AuthReducer } from './reducer'
 import { AuthConsumer } from './reducer/actions'
 import { AuthContextType } from './types'
 import { authController } from '../../controllers/Auth'
+import { AuthType } from './reducer/types'
 
 export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
@@ -13,13 +14,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     {
       isAuthenticated: false,
       email: '',
+      notificationTime: '8',
     },
-    () => {
+    (): AuthType => {
       const authInstance = authController.getAuthInstance()
       authController.configureAuthClient(client, authInstance)
       return {
         isAuthenticated: authInstance.isAuthenticated,
         email: authInstance.email,
+        notificationTime: '8',
       }
     },
   )

@@ -9,11 +9,13 @@ export function AuthReducer(
     case AuthActions.LOGIN:
       return {
         isAuthenticated: true,
+        notificationTime: '8',
         email: action.payload.email,
       }
     case AuthActions.LOGOUT:
       return {
         isAuthenticated: false,
+        notificationTime: '8',
         email: '',
       }
   }

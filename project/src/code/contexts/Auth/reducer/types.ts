@@ -1,3 +1,4 @@
+import { UserModel } from '../../../models/user'
 import { AuthActions } from './actions'
 
 export type AuthReducerAction = {
@@ -5,7 +6,6 @@ export type AuthReducerAction = {
   payload?: any
 }
 
-export interface AuthType {
+export interface AuthType extends UserModel {
   isAuthenticated: boolean
-  email: string
 }
