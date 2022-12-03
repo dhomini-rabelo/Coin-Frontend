@@ -11,10 +11,11 @@ import {
   ChangeEmailSchemaType,
 } from '../../../code/schemas/profile/changeEmail'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Error } from '../../../layout/components/Error'
 import { client } from '../../../core/settings'
 import { useFeedback } from '../../../code/hooks/useFeedback'
 import { showErrorMessages } from '../../../code/utils/errors'
+import { InputForm } from '../../../layout/themes/components/forms/InputForm'
+import { LabelInputForm } from '../../../layout/themes/components/forms/LabelInputForm'
 
 export function ChangeEmailForm() {
   const { FeedbackElement, renderFeedback } = useFeedback()
@@ -71,35 +72,23 @@ export function ChangeEmailForm() {
       >
         <FormDiv.form>
           <form onSubmit={handleSubmit(onValidSubmit)}>
-            <FormDiv.fieldGroup>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                disabled
-                value={email}
-              />
-              <FormDiv.error></FormDiv.error>
-            </FormDiv.fieldGroup>
-            <FormDiv.fieldGroup>
-              <label htmlFor="new_email">Novo Email</label>
-              <input
-                type="email"
-                placeholder="Digite seu novo email"
-                {...register('new_email')}
-              />
-              <Error field="new_email" errors={errors} />
-            </FormDiv.fieldGroup>
-            <FormDiv.fieldGroup>
-              <label htmlFor="confirm_new_email">Confirmar Email</label>
-              <input
-                type="email"
-                placeholder="Confirme seu novo email"
-                {...register('confirm_new_email')}
-              />
-              <Error field="confirm_new_email" errors={errors} />
-            </FormDiv.fieldGroup>
+            <LabelInputForm name="email" value={email} />
+            <InputForm
+              type="email"
+              name="new_email"
+              label="Novo Email"
+              placeholder="Digite seu novo email"
+              errors={errors}
+              register={register}
+            />
+            <InputForm
+              type="email"
+              name="confirm_new_email"
+              label="Confirmar Email"
+              placeholder="Confirme seu novo email"
+              errors={errors}
+              register={register}
+            />
             <ButtonForm onFetch={isSubmitSuccessful}>Confirmar</ButtonForm>
           </form>
         </FormDiv.form>

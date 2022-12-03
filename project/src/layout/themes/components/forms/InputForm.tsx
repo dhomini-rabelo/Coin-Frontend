@@ -19,6 +19,7 @@ interface Props<
   errors: TFieldErrors
   register: UseFormRegister<SchemaType>
   type?: 'text' | 'email' | 'number'
+  disabled?: boolean
 }
 
 export function InputForm<
@@ -29,8 +30,9 @@ export function InputForm<
   label,
   placeholder,
   register,
-  type = 'text',
   errors,
+  type = 'text',
+  disabled = false,
 }: Props<SchemaType, TFieldErrors>) {
   return (
     <Div.fieldGroup>
@@ -38,6 +40,7 @@ export function InputForm<
       <input
         type={type}
         placeholder={placeholder}
+        disabled={disabled}
         {...register(name as Path<SchemaType>)}
       />
       <Error
