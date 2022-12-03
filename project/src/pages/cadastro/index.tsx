@@ -5,7 +5,7 @@ import { ButtonForm } from '../../layout/themes/styles/form/components/buttons'
 import {
   RegisterUserSchema,
   RegisterUserSchemaType,
-} from '../../code/schemas/user'
+} from '../../code/schemas/auth/register'
 import { useForm } from 'react-hook-form'
 import { Error } from '../../layout/components/Error'
 import { useFeedback } from '../../code/hooks/useFeedback'

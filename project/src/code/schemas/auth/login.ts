@@ -1,5 +1,5 @@
 import * as zod from 'zod'
-import { ErrorMessages } from './support/messages'
+import { ErrorMessages } from '../support/messages'
 
 export interface LoginSchemaType {
   email: string

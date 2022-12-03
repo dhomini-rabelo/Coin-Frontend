@@ -1,5 +1,5 @@
 import * as zod from 'zod'
-import { DynamicErrors, ErrorMessages } from './support/messages'
+import { DynamicErrors, ErrorMessages } from '../support/messages'
 
 export interface RegisterUserSchemaType {
   email: string
