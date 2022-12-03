@@ -1,6 +1,7 @@
-import { ErrorOption } from 'react-hook-form'
+import { ErrorOption, FieldValues } from 'react-hook-form'
+import { AxiosError } from 'axios'
 
-export function showErrorMessages<SchemaType>(
+export function showErrorMessages<SchemaType extends FieldValues>(
   apiFormErrors: { [field: string]: string[] },
   fieldsData: SchemaType,
   setError: (fieldName: keyof SchemaType, errorOptions: ErrorOption) => void,
@@ -23,4 +24,30 @@ export function showErrorMessages<SchemaType>(
       }
     },
   )
+}
+
+export function processFormErrorResponse<SchemaType extends FieldValues>(
+  error: AxiosError,
+  fieldsData: SchemaType,
+  setError: (fieldName: keyof SchemaType, errorOptions: ErrorOption) => void,
+  reset: (data: SchemaType) => void,
+  renderFeedback: (
+    type: 'error' | 'success',
+    message: string,
+    onClose?: () => void,
+  ) => void | null,
+) {
+  if (error.response!.status === 400) {
+    showErrorMessages<SchemaType>(
+      error.response!.data,
+      fieldsData,
+      setError,
+      reset,
+    )
+  } else {
+    reset(fieldsData)
+    if (renderFeedback) {
+      renderFeedback('error', 'Server Error')
+    }
+  }
 }
