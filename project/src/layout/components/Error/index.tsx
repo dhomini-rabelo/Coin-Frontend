@@ -1,13 +1,16 @@
-import { ErrorMessage } from '@hookform/error-message'
-import { FieldErrorsImpl } from 'react-hook-form'
+import {
+  ErrorMessage,
+  FieldValuesFromFieldErrors,
+} from '@hookform/error-message'
+import { FieldErrors, FieldName } from 'react-hook-form'
 import { Div } from '../../themes/styles/form'
 
-export function Error({
+export function Error<TFieldErrors extends FieldErrors>({
   errors,
   field,
 }: {
-  errors: Partial<FieldErrorsImpl>
-  field: string
+  errors: TFieldErrors
+  field: FieldName<FieldValuesFromFieldErrors<TFieldErrors>>
 }) {
   return (
     <span className="min-h-[20px] block">
