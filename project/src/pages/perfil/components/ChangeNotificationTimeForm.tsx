@@ -19,11 +19,15 @@ import { Error } from '../../../layout/components/Error'
 export function ChangeNotificationTimeForm() {
   const { FeedbackElement, renderFeedback } = useFeedback()
   const {
-    auth: { email },
+    auth: { email, notificationTime },
+    actions: { setNotificationTime },
   } = useContext(AuthContext)
   const ChangeNotificationTimeFormHook =
     useForm<ChangeNotificationTimeSchemaType>({
       resolver: zodResolver(ChangeNotificationTimeSchema),
+      defaultValues: {
+        notification_time: notificationTime,
+      },
     })
   const {
     handleSubmit,
@@ -39,6 +43,7 @@ export function ChangeNotificationTimeForm() {
       .then((response) => {
         reset(data)
         renderFeedback('success', 'Horário alterado com sucesso')
+        setNotificationTime(response.data.notification_time)
       })
       .catch((error) => {
         if (error.response.status === 400) {

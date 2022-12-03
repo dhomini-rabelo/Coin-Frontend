@@ -43,13 +43,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   function logout() {
-    authDispatch(AuthConsumer.logout())
     authController.killAuthInstance()
-    window.location.href = '/' // move to login page
+    authDispatch(AuthConsumer.logout())
+  }
+
+  function setNotificationTime(notificationTime: notificationTimeChoicesType) {
+    authDispatch(AuthConsumer.setNotificationTime(notificationTime))
   }
 
   return (
-    <AuthContext.Provider value={{ auth, actions: { login, logout } }}>
+    <AuthContext.Provider
+      value={{ auth, actions: { login, logout, setNotificationTime } }}
+    >
       {children}
     </AuthContext.Provider>
   )

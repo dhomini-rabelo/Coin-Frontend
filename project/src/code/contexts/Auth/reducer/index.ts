@@ -18,5 +18,10 @@ export function AuthReducer(
         notificationTime: '8',
         email: '',
       }
+    case AuthActions.SET_NOTIFICATION_TIME:
+      return {
+        ...state,
+        notificationTime: action.payload.notificationTime,
+      }
   }
 }

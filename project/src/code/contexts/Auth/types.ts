@@ -11,5 +11,6 @@ export interface AuthContextType {
       refreshToken: string,
     ) => void
     logout: () => void
+    setNotificationTime: (notificationTime: notificationTimeChoicesType) => void
   }
 }
