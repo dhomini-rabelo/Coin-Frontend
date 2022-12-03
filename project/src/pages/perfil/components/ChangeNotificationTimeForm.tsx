@@ -37,8 +37,8 @@ export function ChangeNotificationTimeForm() {
     client
       .put('change-notification-time', data)
       .then((response) => {
-        renderFeedback('success', 'Horário alterado com sucesso')
         reset(data)
+        renderFeedback('success', 'Horário alterado com sucesso')
       })
       .catch((error) => {
         if (error.response.status === 400) {
@@ -48,9 +48,6 @@ export function ChangeNotificationTimeForm() {
             setError,
             reset,
           )
-        } else if (error.response.status === 401) {
-          reset(data)
-          renderFeedback('error', 'Credenciais incorretas')
         } else {
           reset(data)
           renderFeedback('error', 'Server Error')
@@ -84,7 +81,7 @@ export function ChangeNotificationTimeForm() {
               <FormDiv.error></FormDiv.error>
             </FormDiv.fieldGroup>
             <FormDiv.fieldGroup>
-              <label htmlFor="">Horário</label>
+              <label htmlFor="notification_time">Horário</label>
               <select {...register('notification_time')}>
                 <option value="8">8h</option>
                 <option value="12">12h</option>

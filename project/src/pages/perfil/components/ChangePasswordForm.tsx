@@ -50,9 +50,6 @@ export function ChangePasswordForm() {
             reset,
             { password: 'new_password' },
           )
-        } else if (error.response.status === 401) {
-          reset(data)
-          renderFeedback('error', 'Credenciais incorretas')
         } else {
           reset(data)
           renderFeedback('error', 'Server Error')
@@ -95,7 +92,7 @@ export function ChangePasswordForm() {
               <Error field="new_password" errors={errors} />
             </FormDiv.fieldGroup>
             <FormDiv.fieldGroup>
-              <label htmlFor="confirm-new_password">Confirmar Senha</label>
+              <label htmlFor="confirm_new_password">Confirmar Senha</label>
               <input
                 type="password"
                 placeholder="Confirme sua nova senha"

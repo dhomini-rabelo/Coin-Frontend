@@ -39,9 +39,7 @@ export function ChangeEmailForm() {
         email: data.new_email,
       })
       .then((response) => {
-        renderFeedback('success', 'Email alterado com sucesso', () => {
-          logout()
-        })
+        renderFeedback('success', 'Email alterado com sucesso', () => logout())
       })
       .catch((error) => {
         if (error.response.status === 400) {
@@ -52,9 +50,6 @@ export function ChangeEmailForm() {
             reset,
             { email: 'new_email' },
           )
-        } else if (error.response.status === 401) {
-          reset(data)
-          renderFeedback('error', 'Credenciais incorretas')
         } else {
           reset(data)
           renderFeedback('error', 'Server Error')
@@ -88,7 +83,7 @@ export function ChangeEmailForm() {
               <FormDiv.error></FormDiv.error>
             </FormDiv.fieldGroup>
             <FormDiv.fieldGroup>
-              <label htmlFor="new-email">Novo Email</label>
+              <label htmlFor="new_email">Novo Email</label>
               <input
                 type="email"
                 placeholder="Digite seu novo email"
@@ -97,7 +92,7 @@ export function ChangeEmailForm() {
               <Error field="new_email" errors={errors} />
             </FormDiv.fieldGroup>
             <FormDiv.fieldGroup>
-              <label htmlFor="confirm-new-email">Confirmar Email</label>
+              <label htmlFor="confirm_new_email">Confirmar Email</label>
               <input
                 type="email"
                 placeholder="Confirme seu novo email"
