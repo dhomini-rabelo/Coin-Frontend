@@ -172,7 +172,8 @@ export const Div = {
     }
 
     input,
-    textarea {
+    textarea,
+    select {
       height: 3.375rem;
       display: block;
       width: 100%;
@@ -192,6 +193,24 @@ export const Div = {
       padding: 0.625rem;
       height: auto;
       text-indent: 0;
+    }
+
+    select {
+      -webkit-appearance: button !important;
+      -moz-appearance: button !important;
+      appearance: button !important;
+      cursor: pointer;
+    }
+
+    option {
+      text-indent: 0.8rem;
+      font-size: 20px;
+      line-height: 32px;
+      cursor: pointer;
+    }
+
+    option:hover {
+      cursor: pointer;
     }
 
     input:focus,

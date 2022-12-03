@@ -2,6 +2,7 @@
 
 export enum ErrorMessages {
   REQUIRED = 'Este campo é obrigatório',
+  INVALID_VALUE = 'Valor inválido',
   INVALID_EMAIL = 'Email inválido',
 }
 

@@ -1,50 +1,18 @@
 import { Div } from './styles'
 import { Div as FormDiv } from '../../layout/themes/styles/form'
 import { SimpleBox } from '../../layout/components/SimpleBox'
-import { LockSimple, Watch } from 'phosphor-react'
+import { LockSimple } from 'phosphor-react'
 import { SimplePopover } from '../../layout/components/Popovers/SimplePopover'
 import { ButtonForm } from '../../layout/themes/styles/form/components/buttons'
-import { SimpleSelect } from '../../layout/components/Select/simple'
-import { ChangeEmailForm } from './components/changeEmailForm'
+import { ChangeNotificationTimeForm } from './components/ChangeNotificationTimeForm'
+import { ChangeEmailForm } from './components/ChangeEmailForm'
 
 export function AccountPage() {
   return (
     <Div.container>
       <ChangeEmailForm />
 
-      <SimplePopover
-        button={
-          <SimpleBox
-            icon={<Watch size={40} color="#fff" />}
-            title="Alterar envio"
-            description="Altere o horário do envio de alertas por email"
-          />
-        }
-      >
-        <FormDiv.form>
-          <FormDiv.fieldGroup>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              disabled
-              value="test@test.test"
-            />
-            <FormDiv.error></FormDiv.error>
-          </FormDiv.fieldGroup>
-          <FormDiv.fieldGroup>
-            <label htmlFor="">Horário</label>
-            <FormDiv.select>
-              <SimpleSelect
-                data={['8:00', '12:00', '16:00', '20:00']}
-                initialValue="16:00"
-              />
-            </FormDiv.select>
-          </FormDiv.fieldGroup>
-          <ButtonForm>Confirmar</ButtonForm>
-        </FormDiv.form>
-      </SimplePopover>
+      <ChangeNotificationTimeForm />
 
       <SimplePopover
         button={
