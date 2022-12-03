@@ -11,7 +11,7 @@ import { Div as FormDiv } from '../../../layout/themes/styles/form'
 import { ButtonForm } from '../../../layout/themes/styles/form/components/buttons'
 import { Error } from '../../../layout/components/Error'
 import { client } from '../../../core/settings'
-import { showErrorMessages } from '../../../code/utils/errors'
+import { processFormErrorResponse } from '../../../code/utils/errors'
 import { useFeedback } from '../../../code/hooks/useFeedback'
 import { useContext } from 'react'
 import { AuthContext } from '../../../code/contexts/Auth'
@@ -42,18 +42,13 @@ export function ChangePasswordForm() {
         renderFeedback('success', 'Senha alterada com sucesso', () => logout())
       })
       .catch((error) => {
-        if (error.response.status === 400) {
-          showErrorMessages<changePasswordSchemaType>(
-            error.response.data,
-            data,
-            setError,
-            reset,
-            { password: 'new_password' },
-          )
-        } else {
-          reset(data)
-          renderFeedback('error', 'Server Error')
-        }
+        processFormErrorResponse<changePasswordSchemaType>(
+          error,
+          data,
+          setError,
+          reset,
+          renderFeedback,
+        )
       })
   }
 

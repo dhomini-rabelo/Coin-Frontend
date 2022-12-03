@@ -13,7 +13,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod'
 import { client } from '../../../core/settings'
 import { useFeedback } from '../../../code/hooks/useFeedback'
-import { showErrorMessages } from '../../../code/utils/errors'
+import { processFormErrorResponse } from '../../../code/utils/errors'
 import { InputForm } from '../../../layout/themes/components/forms/InputForm'
 import { LabelInputForm } from '../../../layout/themes/components/forms/LabelInputForm'
 
@@ -43,18 +43,14 @@ export function ChangeEmailForm() {
         renderFeedback('success', 'Email alterado com sucesso', () => logout())
       })
       .catch((error) => {
-        if (error.response.status === 400) {
-          showErrorMessages<ChangeEmailSchemaType>(
-            error.response.data,
-            data,
-            setError,
-            reset,
-            { email: 'new_email' },
-          )
-        } else {
-          reset(data)
-          renderFeedback('error', 'Server Error')
-        }
+        processFormErrorResponse<ChangeEmailSchemaType>(
+          error,
+          data,
+          setError,
+          reset,
+          renderFeedback,
+          { email: 'new_email' },
+        )
       })
   }
 

@@ -36,6 +36,7 @@ export function processFormErrorResponse<SchemaType extends FieldValues>(
     message: string,
     onClose?: () => void,
   ) => void | null,
+  adapterFields: { [fieldName: string]: string } = {},
 ) {
   if (error.response!.status === 400) {
     showErrorMessages<SchemaType>(
@@ -43,6 +44,7 @@ export function processFormErrorResponse<SchemaType extends FieldValues>(
       fieldsData,
       setError,
       reset,
+      adapterFields,
     )
   } else {
     reset(fieldsData)

@@ -13,7 +13,7 @@ import { Div as FormDiv } from '../../../layout/themes/styles/form'
 import { ButtonForm } from '../../../layout/themes/styles/form/components/buttons'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { client } from '../../../core/settings'
-import { showErrorMessages } from '../../../code/utils/errors'
+import { processFormErrorResponse } from '../../../code/utils/errors'
 import { SelectField } from '../../../layout/themes/components/forms/SelectField'
 import { notificationTimeChoices } from '../../../code/models/support/choices'
 import { LabelInputForm } from '../../../layout/themes/components/forms/LabelInputForm'
@@ -48,17 +48,13 @@ export function ChangeNotificationTimeForm() {
         setNotificationTime(response.data.notification_time)
       })
       .catch((error) => {
-        if (error.response.status === 400) {
-          showErrorMessages<ChangeNotificationTimeSchemaType>(
-            error.response.data,
-            data,
-            setError,
-            reset,
-          )
-        } else {
-          reset(data)
-          renderFeedback('error', 'Server Error')
-        }
+        processFormErrorResponse<ChangeNotificationTimeSchemaType>(
+          error,
+          data,
+          setError,
+          reset,
+          renderFeedback,
+        )
       })
   }
 
