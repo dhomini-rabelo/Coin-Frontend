@@ -14,7 +14,9 @@ import { ButtonForm } from '../../../layout/themes/styles/form/components/button
 import { zodResolver } from '@hookform/resolvers/zod'
 import { client } from '../../../core/settings'
 import { showErrorMessages } from '../../../code/utils/errors'
-import { Error } from '../../../layout/components/Error'
+import { SelectField } from '../../../layout/themes/components/forms/SelectField'
+import { notificationTimeChoices } from '../../../code/models/support/choices'
+import { LabelInputForm } from '../../../layout/themes/components/forms/LabelInputForm'
 
 export function ChangeNotificationTimeForm() {
   const { FeedbackElement, renderFeedback } = useFeedback()
@@ -74,27 +76,14 @@ export function ChangeNotificationTimeForm() {
       >
         <FormDiv.form>
           <form onSubmit={handleSubmit(onValidSubmit)}>
-            <FormDiv.fieldGroup>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                disabled
-              />
-              <FormDiv.error></FormDiv.error>
-            </FormDiv.fieldGroup>
-            <FormDiv.fieldGroup>
-              <label htmlFor="notification_time">Horário</label>
-              <select {...register('notification_time')}>
-                <option value="8">8h</option>
-                <option value="12">12h</option>
-                <option value="16">16h</option>
-                <option value="20">20h</option>
-              </select>
-              <Error field="notification_time" errors={errors} />
-            </FormDiv.fieldGroup>
+            <LabelInputForm name="email" value={email} />
+            <SelectField
+              name="notification_time"
+              label="Horário"
+              choices={notificationTimeChoices}
+              errors={errors}
+              register={register}
+            />
             <ButtonForm onFetch={isSubmitSuccessful}>Confirmar</ButtonForm>
           </form>
         </FormDiv.form>
