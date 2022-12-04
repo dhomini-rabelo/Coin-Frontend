@@ -18,7 +18,7 @@ interface Props<
   placeholder: string
   errors: TFieldErrors
   register: UseFormRegister<SchemaType>
-  type?: 'text' | 'email' | 'number'
+  type?: 'text' | 'email' | 'number' | 'password'
   disabled?: boolean
 }
 

@@ -7,10 +7,10 @@ import {
   RegisterUserSchemaType,
 } from '../../code/schemas/auth/register'
 import { useForm } from 'react-hook-form'
-import { Error } from '../../layout/components/Error'
 import { useFeedback } from '../../code/hooks/useFeedback'
 import { client } from '../../core/settings'
 import { showErrorMessages } from '../../code/utils/errors'
+import { InputForm } from '../../layout/themes/components/forms/InputForm'
 
 export function RegisterPage() {
   const navigateTo = useNavigate()
@@ -51,33 +51,30 @@ export function RegisterPage() {
       </div>
       <Div.form>
         <form onSubmit={handleSubmit(onValidSubmit)}>
-          <Div.fieldGroup>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              placeholder="Digite seu email"
-              {...register('email')}
-            />
-            <Error field="email" errors={errors} />
-          </Div.fieldGroup>
-          <Div.fieldGroup>
-            <label htmlFor="password">Senha</label>
-            <input
-              type="password"
-              placeholder="Digite sua senha"
-              {...register('password')}
-            />
-            <Error field="password" errors={errors} />
-          </Div.fieldGroup>
-          <Div.fieldGroup>
-            <label htmlFor="confirm_password">Confirmar Senha</label>
-            <input
-              type="password"
-              placeholder="Confirme sua senha"
-              {...register('confirm_password')}
-            />
-            <Error field="confirm_password" errors={errors} />
-          </Div.fieldGroup>
+          <InputForm
+            type="email"
+            name="email"
+            label="Email"
+            placeholder="Digite seu email"
+            errors={errors}
+            register={register}
+          />
+          <InputForm
+            type="password"
+            name="password"
+            label="Senha"
+            placeholder="Digite sua senha"
+            errors={errors}
+            register={register}
+          />
+          <InputForm
+            type="password"
+            name="confirm_password"
+            label="Confirmar Senha"
+            placeholder="Confirme sua senha"
+            errors={errors}
+            register={register}
+          />
           <ButtonForm onFetch={isSubmitSuccessful}>Cadastrar</ButtonForm>
           <Div.btnBottom>
             <Link to="/">Fazer login</Link>
