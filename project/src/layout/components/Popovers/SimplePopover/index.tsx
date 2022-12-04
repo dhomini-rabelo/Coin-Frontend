@@ -8,7 +8,7 @@ export function SimplePopover({
   children,
   long = false,
 }: {
-  button: ReactNode
+  button: ReactNode | string
   children: ReactNode
   long?: boolean
 }) {
