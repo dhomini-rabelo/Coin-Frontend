@@ -13,6 +13,10 @@ import { InputForm } from '../../../layout/themes/components/forms/InputForm'
 import { useFeedback } from '../../../code/hooks/useFeedback'
 import { client } from '../../../core/settings'
 import { processFormErrorResponse } from '../../../code/utils/errors'
+import {
+  billTypeChoices,
+  paymentMethodChoices,
+} from '../../../code/models/support/choices'
 
 export function AddBillForm({ children }: { children: ReactNode }) {
   const { FeedbackElement, renderFeedback } = useFeedback()
@@ -79,11 +83,7 @@ export function AddBillForm({ children }: { children: ReactNode }) {
       {FeedbackElement}
 
       <SimplePopover button={children} long={true}>
-        <form
-          onSubmit={handleSubmit(onValidSubmit, (formErrors) =>
-            console.log('ERROS:', formErrors),
-          )}
-        >
+        <form onSubmit={handleSubmit(onValidSubmit)}>
           <FormDiv.form className="grid grid-cols-2 gap-x-4">
             <div className="col-span-1">
               <InputForm
@@ -98,12 +98,7 @@ export function AddBillForm({ children }: { children: ReactNode }) {
               <SelectField
                 name="bill_type"
                 label="Tipo"
-                choices={{
-                  income: 'Ganho',
-                  scheduled_income: 'Ganho agendado',
-                  expense: 'Despesa',
-                  scheduled_expense: 'Despesa agendada',
-                }}
+                choices={billTypeChoices}
                 errors={errors}
                 register={register}
               />
@@ -121,12 +116,7 @@ export function AddBillForm({ children }: { children: ReactNode }) {
               <SelectField
                 name="payment_method"
                 label="Meio de pagamento"
-                choices={{
-                  card: 'Cartão',
-                  money: 'Dinheiro',
-                  pix: 'PIX',
-                  billet: 'Boleto',
-                }}
+                choices={paymentMethodChoices}
                 errors={errors}
                 register={register}
               />
