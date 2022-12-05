@@ -85,7 +85,7 @@ export function AddBillForm({ children }: { children: ReactNode }) {
       <SimplePopover button={children} long={true}>
         <form onSubmit={handleSubmit(onValidSubmit)}>
           <FormDiv.form className="grid grid-cols-2 gap-x-4">
-            <div className="col-span-1">
+            <div className="col-span-2 sm:col-span-1">
               <InputForm
                 name="title"
                 label="Título"
@@ -94,7 +94,7 @@ export function AddBillForm({ children }: { children: ReactNode }) {
                 register={register}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2 sm:col-span-1">
               <SelectField
                 name="bill_type"
                 label="Tipo"
@@ -103,7 +103,7 @@ export function AddBillForm({ children }: { children: ReactNode }) {
                 register={register}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2 sm:col-span-1">
               <InputForm
                 name="description"
                 label="Descrição (opcional)"
@@ -112,7 +112,7 @@ export function AddBillForm({ children }: { children: ReactNode }) {
                 register={register}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2 sm:col-span-1">
               <SelectField
                 name="payment_method"
                 label="Meio de pagamento"
@@ -121,7 +121,9 @@ export function AddBillForm({ children }: { children: ReactNode }) {
                 register={register}
               />
             </div>
-            <div className={`col-span-1 ${displayExtraFieldsClass}`}>
+            <div
+              className={`col-span-2 sm:col-span-1 ${displayExtraFieldsClass}`}
+            >
               <InputForm
                 type="int"
                 name="partials"
@@ -131,7 +133,9 @@ export function AddBillForm({ children }: { children: ReactNode }) {
                 register={register}
               />
             </div>
-            <div className={`col-span-1 ${displayExtraFieldsClass}`}>
+            <div
+              className={`col-span-2 sm:col-span-1 ${displayExtraFieldsClass}`}
+            >
               <InputForm
                 type="int"
                 name="day"
@@ -141,7 +145,7 @@ export function AddBillForm({ children }: { children: ReactNode }) {
                 register={register}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2 sm:col-span-1">
               <InputForm
                 type="decimal"
                 name="value"
@@ -151,7 +155,7 @@ export function AddBillForm({ children }: { children: ReactNode }) {
                 register={register}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2 sm:col-span-1">
               <ButtonForm onFetch={isSubmitSuccessful}>Confirmar</ButtonForm>
             </div>
           </FormDiv.form>

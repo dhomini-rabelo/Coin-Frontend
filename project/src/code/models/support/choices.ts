@@ -18,7 +18,7 @@ export const billTypeChoicesValues = ['card', 'money', 'pix', 'billet'] as const
 
 export const paymentMethodChoices = {
   income: 'Ganho',
-  scheduled_income: 'Ganho',
+  scheduled_income: 'Ganho agendado',
   expense: 'Despesa',
   scheduled_expense: 'Despesa agendada',
 } as const
