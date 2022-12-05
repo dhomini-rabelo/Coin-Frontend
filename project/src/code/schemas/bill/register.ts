@@ -13,13 +13,25 @@ export const RegisterBillSchema = zod.object({
     'expense',
     'scheduled_expense',
   ]),
-  value: zod.number().positive(),
+  value: zod
+    .number({
+      invalid_type_error: ErrorMessages.REQUIRED,
+    })
+    .gte(1, DynamicErrors.minValue(1)),
+  payment_method: zod.enum(['card', 'money', 'pix', 'billet']),
   day: zod
-    .number()
+    .number({
+      invalid_type_error: ErrorMessages.REQUIRED,
+    })
     .gte(1, DynamicErrors.minValue(1))
     .lte(28, DynamicErrors.maxValue(28))
     .nullable(),
-  partials: zod.number().gte(1, DynamicErrors.minValue(1)).nullable(),
+  partials: zod
+    .number({
+      invalid_type_error: ErrorMessages.REQUIRED,
+    })
+    .gte(1, DynamicErrors.minValue(1))
+    .nullable(),
 })
 
 export type RegisterBillSchemaType = zod.infer<typeof RegisterBillSchema>

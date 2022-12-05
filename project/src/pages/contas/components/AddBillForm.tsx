@@ -1,18 +1,23 @@
 import { SimplePopover } from '../../../layout/components/Popovers/SimplePopover'
 import { Div as FormDiv } from '../../../layout/themes/styles/form'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { ButtonForm } from '../../../layout/themes/styles/form/components/buttons'
-import { SimpleSelect } from '../../../layout/components/Select/simple'
 import { useForm } from 'react-hook-form'
 import {
   RegisterBillSchema,
   RegisterBillSchemaType,
 } from '../../../code/schemas/bill/register'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { SelectField } from '../../../layout/themes/components/forms/SelectField'
+import { InputForm } from '../../../layout/themes/components/forms/InputForm'
 
 export function AddBillForm({ children }: { children: ReactNode }) {
   const registerBillFormHook = useForm<RegisterBillSchemaType>({
     resolver: zodResolver(RegisterBillSchema),
+    defaultValues: {
+      day: 1,
+      partials: 1,
+    },
   })
   const {
     handleSubmit,
@@ -20,7 +25,30 @@ export function AddBillForm({ children }: { children: ReactNode }) {
     register,
     setError,
     reset,
+    watch,
+    setValue,
+    getValues,
   } = registerBillFormHook
+
+  const currentBillType = watch('bill_type')
+
+  const activeExtraFields = ['scheduled_expense', 'scheduled_income'].includes(
+    currentBillType,
+  )
+
+  const displayExtraFieldsClass = activeExtraFields ? '' : 'hidden'
+
+  useEffect(() => {
+    if (!activeExtraFields) {
+      const registerFormState = getValues()
+      reset({
+        ...registerFormState,
+        day: registerFormState.day || 1,
+        partials: registerFormState.partials || 1,
+        value: registerFormState.value || 1,
+      })
+    }
+  }, [activeExtraFields, setValue, getValues, reset])
 
   function onValidSubmit(data: RegisterBillSchemaType) {
     console.log(data)
@@ -28,82 +56,93 @@ export function AddBillForm({ children }: { children: ReactNode }) {
 
   return (
     <SimplePopover button={children} long={true}>
-      <FormDiv.form>
-        <form onSubmit={handleSubmit(onValidSubmit)}>
-          <FormDiv.fieldGroup>
-            <label htmlFor="">Modelo</label>
-            <FormDiv.select>
-              <SimpleSelect
-                data={['Rápido', 'Agendado']}
-                initialValue="Rápido"
-              />
-            </FormDiv.select>
-            <FormDiv.error></FormDiv.error>
-          </FormDiv.fieldGroup>
-          <FormDiv.fieldGroup>
-            <label htmlFor="title">Título</label>
-            <input
-              type="text"
+      <form
+        onSubmit={handleSubmit(onValidSubmit, (formErrors) =>
+          console.log('ERROS:', formErrors),
+        )}
+      >
+        <FormDiv.form className="grid grid-cols-2 gap-x-4">
+          <div className="col-span-1">
+            <InputForm
               name="title"
-              id="title"
+              label="Título"
               placeholder="Digite o título da conta"
+              errors={errors}
+              register={register}
             />
-            <FormDiv.error></FormDiv.error>
-          </FormDiv.fieldGroup>
-          <FormDiv.fieldGroup>
-            <label htmlFor="description">Descrição (opcional)</label>
-            <textarea
+          </div>
+          <div className="col-span-1">
+            <SelectField
+              name="bill_type"
+              label="Tipo"
+              choices={{
+                income: 'Ganho',
+                scheduled_income: 'Ganho agendado',
+                expense: 'Despesa',
+                scheduled_expense: 'Despesa agendada',
+              }}
+              errors={errors}
+              register={register}
+            />
+          </div>
+          <div className="col-span-1">
+            <InputForm
               name="description"
-              id="description"
+              label="Descrição (opcional)"
               placeholder="Digite a descrição da conta"
-              rows={2}
-            ></textarea>
-            <FormDiv.error></FormDiv.error>
-          </FormDiv.fieldGroup>
-          <FormDiv.fieldGroup>
-            <label htmlFor="value">Valor</label>
-            <input
-              type="number"
-              step={0.01}
+              errors={errors}
+              register={register}
+            />
+          </div>
+          <div className="col-span-1">
+            <SelectField
+              name="payment_method"
+              label="Meio de pagamento"
+              choices={{
+                card: 'Cartão',
+                money: 'Dinheiro',
+                pix: 'PIX',
+                billet: 'Boleto',
+              }}
+              errors={errors}
+              register={register}
+            />
+          </div>
+          <div className={`col-span-1 ${displayExtraFieldsClass}`}>
+            <InputForm
+              type="int"
+              name="partials"
+              label="Parcelas"
+              placeholder="Digite a quantidade de parcelas do pagamento"
+              errors={errors}
+              register={register}
+            />
+          </div>
+          <div className={`col-span-1 ${displayExtraFieldsClass}`}>
+            <InputForm
+              type="int"
+              name="day"
+              label="Dia"
+              placeholder="Digite o dia de pagamento"
+              errors={errors}
+              register={register}
+            />
+          </div>
+          <div className="col-span-1">
+            <InputForm
+              type="decimal"
               name="value"
-              id="value"
+              label="Valor"
               placeholder="Digite o valor da conta"
+              errors={errors}
+              register={register}
             />
-            <FormDiv.error></FormDiv.error>
-          </FormDiv.fieldGroup>
-          <FormDiv.fieldGroup>
-            <label htmlFor="">Tipo</label>
-            <FormDiv.select>
-              <SimpleSelect data={['Ganho', 'Despesa']} initialValue="Ganho" />
-            </FormDiv.select>
-            <FormDiv.error></FormDiv.error>
-          </FormDiv.fieldGroup>
-          <FormDiv.fieldGroup>
-            <label htmlFor="date">Data</label>
-            <input
-              type="text"
-              name="date"
-              id="date"
-              placeholder="Digite a data de pagamento"
-            />
-            <FormDiv.error></FormDiv.error>
-            <div className="flex items-center">
-              <input
-                id="checked-checkbox"
-                type="checkbox"
-                className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label
-                htmlFor="checked-checkbox"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 checkbox-label"
-              >
-                Ativar notificação
-              </label>
-            </div>
-          </FormDiv.fieldGroup>
-          <ButtonForm>Confirmar</ButtonForm>
-        </form>
-      </FormDiv.form>
+          </div>
+          <div className="col-span-1">
+            <ButtonForm>Confirmar</ButtonForm>
+          </div>
+        </FormDiv.form>
+      </form>
     </SimplePopover>
   )
 }
