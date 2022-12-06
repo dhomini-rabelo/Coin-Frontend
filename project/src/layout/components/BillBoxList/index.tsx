@@ -1,23 +1,13 @@
+import { BillModel } from '../../../code/models/bill'
 import { BillBoxItem } from './components/BillBoxItem'
 import { Div } from './styles'
 
-export function BillBoxList() {
+export function BillBoxList({ bills }: { bills: BillModel[] }) {
   return (
     <Div.container>
-      <BillBoxItem
-        title={'teste'}
-        description={'apenas um teste'}
-        value={0}
-        isIncome={false}
-      />
-      <BillBoxItem
-        title={'teste'}
-        description={
-          'de csdnjs ds dd adsaads sdasdad dsasadsddsaasddssad dasadsdsaa adssadsaddsa'
-        }
-        value={20}
-        isIncome={true}
-      />
+      {bills.map((bill) => (
+        <BillBoxItem key={bill.id} bill={bill} />
+      ))}
     </Div.container>
   )
 }

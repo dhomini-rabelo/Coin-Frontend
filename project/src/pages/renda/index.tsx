@@ -1,5 +1,4 @@
 import { ClockCounterClockwise, ArrowDown, ArrowUp } from 'phosphor-react'
-import { BillBoxList } from '../../layout/components/BillBoxList'
 import { Div, H2, Span } from './styles'
 import { Navigation } from '../../layout/components/Navigation'
 import { Link } from 'react-router-dom'
@@ -62,7 +61,7 @@ export function IncomePage() {
           <H2.bill>Histórico</H2.bill>
           <ClockCounterClockwise size={24} color="#fafafa" />
         </Div.time>
-        <BillBoxList />
+        {/* <BillBoxList /> */}
       </Div.container>
     </>
   )
