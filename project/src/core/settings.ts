@@ -1,7 +1,13 @@
 import axios from 'axios'
 import { QueryClient } from 'react-query'
 
-export const queryClient = new QueryClient()
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000, // 1 minute
+    },
+  },
+})
 
 export const client = axios.create({
   baseURL: 'http://localhost:8000/api',

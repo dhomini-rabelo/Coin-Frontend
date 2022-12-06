@@ -9,9 +9,7 @@ import { useQuery } from 'react-query'
 import { getBills } from '../../code/api/consumers/bills'
 
 export function IncomePage() {
-  const { data } = useQuery<BillModel[]>('bills', getBills, {
-    staleTime: 60 * 1000, // 1 minute
-  })
+  const { data } = useQuery<BillModel[]>('bills', getBills)
   const incomeValue = 2000
   const expenseValue = 1500
   const billValue = incomeValue - expenseValue
