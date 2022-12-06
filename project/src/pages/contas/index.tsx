@@ -8,16 +8,14 @@ import { ButtonForm } from '../../layout/themes/styles/form/components/buttons'
 import { ChildrenSelect } from '../../layout/components/Select/simple'
 import { CircleIcon } from '../../layout/components/Icons/circle'
 import { AddBillForm } from './components/AddBillForm'
-import { useEffect, useState } from 'react'
 import { BillModel } from '../../code/models/bill'
-import { client } from '../../core/settings'
+import { useQuery } from 'react-query'
+import { getBills } from '../../code/api/consumers/bills'
 
 export function BillPage() {
-  const [bills, setBills] = useState<BillModel[]>([])
-
-  useEffect(() => {
-    client.get('bills').then((response) => setBills(response.data))
-  }, [])
+  const { data } = useQuery<BillModel[]>('bills', getBills, {
+    staleTime: 60 * 1000, // 1 minute
+  })
 
   return (
     <>
@@ -77,7 +75,7 @@ export function BillPage() {
             </AddBillForm>
           </Div.funel>
         </Div.title>
-        <BillBoxList bills={bills} />
+        <BillBoxList bills={data || []} />
       </Div.container>
 
       <AddBillForm>

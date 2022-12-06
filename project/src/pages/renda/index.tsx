@@ -3,8 +3,15 @@ import { Div, H2, Span } from './styles'
 import { Navigation } from '../../layout/components/Navigation'
 import { Link } from 'react-router-dom'
 import { priceFormatter } from '../../code/utils/formatters'
+import { BillBoxList } from '../../layout/components/BillBoxList'
+import { BillModel } from '../../code/models/bill'
+import { useQuery } from 'react-query'
+import { getBills } from '../../code/api/consumers/bills'
 
 export function IncomePage() {
+  const { data } = useQuery<BillModel[]>('bills', getBills, {
+    staleTime: 60 * 1000, // 1 minute
+  })
   const incomeValue = 2000
   const expenseValue = 1500
   const billValue = incomeValue - expenseValue
@@ -61,7 +68,7 @@ export function IncomePage() {
           <H2.bill>Histórico</H2.bill>
           <ClockCounterClockwise size={24} color="#fafafa" />
         </Div.time>
-        {/* <BillBoxList /> */}
+        <BillBoxList bills={data || []} />
       </Div.container>
     </>
   )
