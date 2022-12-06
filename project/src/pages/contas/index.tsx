@@ -2,14 +2,23 @@ import { Funnel, Plus } from 'phosphor-react'
 import { BillBoxList } from '../../layout/components/BillBoxList'
 import { SimpleButton } from '../../layout/components/Buttons/simple'
 import { SimplePopover } from '../../layout/components/Popovers/SimplePopover'
-import { Div, H1, Button } from './styles'
+import { Div, H1, Span } from './styles'
 import { Div as FormDiv } from '../../layout/themes/styles/form'
 import { ButtonForm } from '../../layout/themes/styles/form/components/buttons'
 import { ChildrenSelect } from '../../layout/components/Select/simple'
 import { CircleIcon } from '../../layout/components/Icons/circle'
 import { AddBillForm } from './components/AddBillForm'
+import { useEffect, useState } from 'react'
+import { BillModel } from '../../code/models/bill'
+import { client } from '../../core/settings'
 
 export function BillPage() {
+  const [bills, setBills] = useState<BillModel[]>([])
+
+  useEffect(() => {
+    client.get('bills').then((response) => setBills(response.data))
+  }, [])
+
   return (
     <>
       <Div.container>
@@ -68,13 +77,13 @@ export function BillPage() {
             </AddBillForm>
           </Div.funel>
         </Div.title>
-        <BillBoxList />
+        <BillBoxList bills={bills} />
       </Div.container>
 
       <AddBillForm>
-        <Button.addBill>
+        <Span.addBill>
           <Plus size={28} />
-        </Button.addBill>
+        </Span.addBill>
       </AddBillForm>
     </>
   )

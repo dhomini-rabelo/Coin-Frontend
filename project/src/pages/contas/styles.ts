@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Div = {
   container: styled.div`
@@ -26,7 +26,7 @@ export const Div = {
       letter-spacing: 0.0264em;
       font-style: normal;
       font-weight: 700;
-      color: #1B232A;
+      color: #1b232a;
     }
 
     svg {
@@ -34,7 +34,7 @@ export const Div = {
       margin-right: 2rem;
     }
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       #addBill {
         display: none;
       }
@@ -46,11 +46,9 @@ export const Div = {
   `,
 
   a: styled.div``,
-};
-
+}
 
 export const H1 = {
-
   title: styled.h1`
     font-size: 18px;
     line-height: 22px;
@@ -59,23 +57,19 @@ export const H1 = {
     font-weight: 700;
     color: #fafafa;
   `,
-
 }
 
-
-export const Button = {
-
-  addBill: styled.button`
+export const Span = {
+  addBill: styled.span`
     position: fixed;
     right: 36px;
     bottom: 116px;
-    background-color: #5ED5A8;
+    background-color: #5ed5a8;
     border-radius: 50%;
     padding: 0.8rem;
 
-    @media(min-width: 768px) {
+    @media (min-width: 768px) {
       display: none;
     }
   `,
-
 }
