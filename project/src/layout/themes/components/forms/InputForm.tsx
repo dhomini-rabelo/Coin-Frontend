@@ -9,7 +9,7 @@ import {
 } from 'react-hook-form'
 import { FieldValuesFromFieldErrors } from '@hookform/error-message'
 
-type InputTypes = 'text' | 'email' | 'decimal' | 'password' | 'int'
+type InputTypes = 'text' | 'email' | 'decimal' | 'password' | 'int' | 'date'
 
 interface Props<
   SchemaType extends FieldValues,
@@ -38,6 +38,12 @@ export function InputForm<
 }: Props<SchemaType, TFieldErrors>) {
   function getInputConfig(type: InputTypes) {
     switch (type) {
+      case 'date':
+        return {
+          inputType: 'date',
+          registerConfig: { valueAsDate: true },
+          inputAttributes: {},
+        }
       case 'decimal':
         return {
           inputType: 'number',
