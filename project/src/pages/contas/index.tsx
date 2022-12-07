@@ -1,19 +1,29 @@
-import { Funnel, Plus } from 'phosphor-react'
+import { Plus } from 'phosphor-react'
 import { BillBoxList } from '../../layout/components/BillBoxList'
 import { SimpleButton } from '../../layout/components/Buttons/simple'
-import { SimplePopover } from '../../layout/components/Popovers/SimplePopover'
 import { Div, H1, Span } from './styles'
-import { Div as FormDiv } from '../../layout/themes/styles/form'
-import { ButtonForm } from '../../layout/themes/styles/form/components/buttons'
-import { ChildrenSelect } from '../../layout/components/Select/simple'
-import { CircleIcon } from '../../layout/components/Icons/circle'
 import { AddBillForm } from './components/AddBillForm'
 import { BillModel } from '../../code/models/bill'
 import { useQuery } from 'react-query'
 import { getBills } from '../../code/api/consumers/bills'
+import { FilterBillsForm } from './components/FilterBillsForm'
+// import { billTypeChoicesType } from '../../code/models/support/choices'
 
 export function BillPage() {
   const { data } = useQuery<BillModel[]>('bills', getBills)
+  // function filterBillList(bills: BillModel[], afterDate: string | null, paymentMethod: billTypeChoicesType | null) {
+  //   return bills.filter(bill => {
+  //     if (afterDate && paymentMethod) {
+  //       return (new Date(afterDate) < new Date(bill.created_at)) && (bill.payment_method === paymentMethod)
+  //     } else if (afterDate) {
+  //       return new Date(afterDate) < new Date(bill.created_at)
+  //     } else if (paymentMethod) {
+  //       return bill.payment_method === paymentMethod
+  //     } else {
+  //       throw new Error('Invalid filter')
+  //     }
+  //   })
+  // }
 
   return (
     <>
@@ -21,53 +31,7 @@ export function BillPage() {
         <Div.title>
           <H1.title>Contas</H1.title>
           <Div.funel>
-            <SimplePopover
-              long={false}
-              button={<Funnel size={32} color="#fafafa" />}
-            >
-              <FormDiv.form>
-                <FormDiv.fieldGroup>
-                  <label htmlFor="">Contas</label>
-                  <FormDiv.select>
-                    <ChildrenSelect
-                      data={[
-                        <span key="0">Todas</span>,
-                        <span key="1">
-                          <CircleIcon size={12} color="#FF6B6B" /> Despesas
-                        </span>,
-                        <span key="2">
-                          <CircleIcon size={12} color="#5ED5A8" /> Ganhos
-                        </span>,
-                      ]}
-                      initialValue="Todas"
-                    />
-                  </FormDiv.select>
-                  <FormDiv.error></FormDiv.error>
-                </FormDiv.fieldGroup>
-                <FormDiv.fieldGroup>
-                  <label htmlFor="value">Valor</label>
-                  <input
-                    type="number"
-                    step={0.01}
-                    name="value"
-                    id="value"
-                    placeholder="Digite o valor da conta"
-                  />
-                  <FormDiv.error></FormDiv.error>
-                </FormDiv.fieldGroup>
-                <FormDiv.fieldGroup>
-                  <label htmlFor="title">Buscar</label>
-                  <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    placeholder="Busque pelo título da conta"
-                  />
-                  <FormDiv.error></FormDiv.error>
-                </FormDiv.fieldGroup>
-                <ButtonForm>Filtrar</ButtonForm>
-              </FormDiv.form>
-            </SimplePopover>
+            <FilterBillsForm />
             <AddBillForm>
               <SimpleButton id="addBill">Adicionar</SimpleButton>
             </AddBillForm>
