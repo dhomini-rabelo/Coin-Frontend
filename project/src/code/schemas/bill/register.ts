@@ -1,4 +1,8 @@
 import * as zod from 'zod'
+import {
+  billTypeChoicesValues,
+  paymentMethodChoicesValues,
+} from '../../models/support/choices'
 import { ErrorMessages, DynamicErrors } from '../support/messages'
 
 export const RegisterBillSchema = zod.object({
@@ -7,18 +11,13 @@ export const RegisterBillSchema = zod.object({
     .min(1, ErrorMessages.REQUIRED)
     .max(256, DynamicErrors.maxLength(256)),
   description: zod.string(),
-  bill_type: zod.enum([
-    'income',
-    'scheduled_income',
-    'expense',
-    'scheduled_expense',
-  ]),
+  bill_type: zod.enum(billTypeChoicesValues),
   value: zod
     .number({
       invalid_type_error: ErrorMessages.REQUIRED,
     })
     .gte(1, DynamicErrors.minValue(1)),
-  payment_method: zod.enum(['card', 'money', 'pix', 'billet']),
+  payment_method: zod.enum(paymentMethodChoicesValues),
   day: zod
     .number({
       invalid_type_error: ErrorMessages.REQUIRED,
