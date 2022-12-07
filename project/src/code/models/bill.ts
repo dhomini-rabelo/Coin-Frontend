@@ -7,8 +7,8 @@ export interface BillModel {
   id: number
   title: string
   description: string
-  bill_type: paymentMethodChoicesType
-  payment_method: billTypeChoicesType
+  bill_type: billTypeChoicesType
+  payment_method: paymentMethodChoicesType
   value: number
   day: number | null
   partials: number | null
