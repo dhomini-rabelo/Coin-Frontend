@@ -12,4 +12,5 @@ export interface BillModel {
   value: number
   day: number | null
   partials: number | null
+  created_at: string
 }

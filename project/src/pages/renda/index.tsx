@@ -15,6 +15,11 @@ export function IncomePage() {
   const billValue = incomeValue - expenseValue
   const percent = 25
   const percentColor = percent >= 0 ? '#32D74B' : '#FF6B6B'
+  const latestBills = data?.sort((obj1, obj2) =>
+    new Date(obj1.created_at) > new Date(obj2.created_at) ? 1 : -1,
+  )
+  const latest10Bills =
+    (latestBills || []).length > 10 ? latestBills!.slice(0, 10) : latestBills
 
   return (
     <>
@@ -66,7 +71,7 @@ export function IncomePage() {
           <H2.bill>Histórico</H2.bill>
           <ClockCounterClockwise size={24} color="#fafafa" />
         </Div.time>
-        <BillBoxList bills={data || []} />
+        <BillBoxList bills={latest10Bills || []} />
       </Div.container>
     </>
   )
