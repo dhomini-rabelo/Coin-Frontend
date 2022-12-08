@@ -68,7 +68,7 @@ export function ChangeEmailForm() {
       >
         <FormDiv.form>
           <form onSubmit={handleSubmit(onValidSubmit)}>
-            <LabelInputForm name="email" value={email} />
+            <LabelInputForm name="email" value={email} label="Email" />
             <InputForm
               type="email"
               name="new_email"
