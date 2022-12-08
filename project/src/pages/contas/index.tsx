@@ -27,7 +27,6 @@ export function BillPage() {
     billType: billTypeChoicesType | null,
     paymentMethod: paymentMethodChoicesType | null,
   ) {
-    console.log(billType, paymentMethod)
     setBills(
       (data || []).filter((bill) => {
         if (billType && paymentMethod) {

@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Funnel } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
+import { useFeedback } from '../../../code/hooks/useFeedback'
 import {
   billTypeChoices,
   billTypeChoicesType,
@@ -24,6 +25,7 @@ export function FilterBillsForm({
     paymentMethod: paymentMethodChoicesType | null,
   ) => void
 }) {
+  const { FeedbackElement, renderFeedback } = useFeedback()
   const filterBillFormHook = useForm<FilterBillSchemaType>({
     resolver: zodResolver(FilterBillSchema),
   })
@@ -34,34 +36,42 @@ export function FilterBillsForm({
   } = filterBillFormHook
 
   function onValidForm(data: FilterBillSchemaType) {
-    filterBills(
-      data.bill_type !== 'none' ? data.bill_type : null,
-      data.payment_method !== 'none' ? data.payment_method : null,
-    )
+    if (data.bill_type !== 'none' || data.payment_method !== 'none') {
+      filterBills(
+        data.bill_type !== 'none' ? data.bill_type : null,
+        data.payment_method !== 'none' ? data.payment_method : null,
+      )
+      renderFeedback('success', 'Filtros aplicados')
+    } else {
+      renderFeedback('error', 'Nenhum filtro aplicado')
+    }
   }
   return (
-    <SimplePopover long={false} button={<Funnel size={32} color="#fafafa" />}>
-      <form onSubmit={handleSubmit(onValidForm)}>
-        <FormDiv.form>
-          <SelectField
-            hasNullValue
-            name="bill_type"
-            label="Tipo"
-            choices={billTypeChoices}
-            errors={errors}
-            register={register}
-          />
-          <SelectField
-            hasNullValue
-            name="payment_method"
-            label="Meio de pagamento"
-            choices={paymentMethodChoices}
-            errors={errors}
-            register={register}
-          />
-          <ButtonForm>Confirmar</ButtonForm>
-        </FormDiv.form>
-      </form>
-    </SimplePopover>
+    <>
+      {FeedbackElement}
+      <SimplePopover long={false} button={<Funnel size={32} color="#fafafa" />}>
+        <form onSubmit={handleSubmit(onValidForm)}>
+          <FormDiv.form>
+            <SelectField
+              hasNullValue
+              name="bill_type"
+              label="Tipo"
+              choices={billTypeChoices}
+              errors={errors}
+              register={register}
+            />
+            <SelectField
+              hasNullValue
+              name="payment_method"
+              label="Meio de pagamento"
+              choices={paymentMethodChoices}
+              errors={errors}
+              register={register}
+            />
+            <ButtonForm>Confirmar</ButtonForm>
+          </FormDiv.form>
+        </form>
+      </SimplePopover>
+    </>
   )
 }
