@@ -4,6 +4,11 @@ import { ReactNode } from 'react'
 import { BillModel } from '../../../../../code/models/bill'
 import { LabelInputForm } from '../../../../themes/components/forms/LabelInputForm'
 import { BillController } from '../../../../../code/controllers/Bill'
+import {
+  billTypeChoices,
+  paymentMethodChoices,
+} from '../../../../../code/models/support/choices'
+import { priceFormatter } from '../../../../../code/utils/formatters'
 
 export function BillInfo({
   children,
@@ -24,7 +29,7 @@ export function BillInfo({
           <LabelInputForm
             label="Tipo"
             name="bill_type"
-            value={bill.bill_type}
+            value={billTypeChoices[bill.bill_type]}
           />
         </div>
         <div className="col-span-2 sm:col-span-1">
@@ -38,7 +43,7 @@ export function BillInfo({
           <LabelInputForm
             label="Meio de pagamento"
             name="payment_method"
-            value={bill.payment_method}
+            value={paymentMethodChoices[bill.payment_method]}
           />
         </div>
         {billController.isScheduled && (
@@ -56,7 +61,11 @@ export function BillInfo({
           </div>
         )}
         <div className="col-span-2 sm:col-span-1">
-          <LabelInputForm label="Valor" name="value" value={bill.value} />
+          <LabelInputForm
+            label="Valor"
+            name="value"
+            value={priceFormatter.format(bill.value)}
+          />
         </div>
       </FormDiv.form>
     </SimplePopover>
