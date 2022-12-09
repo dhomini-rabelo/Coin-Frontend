@@ -16,6 +16,7 @@ import {
 export function BillPage() {
   const [bills, setBills] = useState<BillModel[]>([])
   const { data, isFetched } = useQuery<BillModel[]>('bills', getBills)
+  const filtersApplied = bills.length !== data?.length
 
   useEffect(() => {
     if (isFetched) {
@@ -44,13 +45,21 @@ export function BillPage() {
     )
   }
 
+  function removeFilters() {
+    setBills(data || [])
+  }
+
   return (
     <>
       <Div.container>
         <Div.title>
           <H1.title>Contas</H1.title>
           <Div.funel>
-            <FilterBillsForm filterBills={filterBills} />
+            <FilterBillsForm
+              filterBills={filterBills}
+              removeFilters={removeFilters}
+              filtersApplied={filtersApplied}
+            />
             <AddBillForm>
               <SimpleButton id="addBill">Adicionar</SimpleButton>
             </AddBillForm>

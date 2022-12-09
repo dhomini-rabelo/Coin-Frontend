@@ -19,11 +19,15 @@ import { ButtonForm } from '../../../layout/themes/styles/form/components/button
 
 export function FilterBillsForm({
   filterBills,
+  removeFilters,
+  filtersApplied,
 }: {
   filterBills: (
     billType: billTypeChoicesType | null,
     paymentMethod: paymentMethodChoicesType | null,
   ) => void
+  removeFilters: () => void
+  filtersApplied: boolean
 }) {
   const { FeedbackElement, renderFeedback } = useFeedback()
   const filterBillFormHook = useForm<FilterBillSchemaType>({
@@ -46,10 +50,25 @@ export function FilterBillsForm({
       renderFeedback('error', 'Nenhum filtro aplicado')
     }
   }
+
+  function handleRemoveFilters() {
+    removeFilters()
+    renderFeedback('success', 'Filtros removidos')
+  }
+
   return (
     <>
       {FeedbackElement}
-      <SimplePopover long={false} button={<Funnel size={32} color="#fafafa" />}>
+      <SimplePopover
+        long={false}
+        button={
+          <Funnel
+            size={32}
+            color="#fafafa"
+            weight={filtersApplied ? 'fill' : 'regular'}
+          />
+        }
+      >
         <form onSubmit={handleSubmit(onValidForm)}>
           <FormDiv.form>
             <SelectField
@@ -68,7 +87,10 @@ export function FilterBillsForm({
               errors={errors}
               register={register}
             />
-            <ButtonForm>Confirmar</ButtonForm>
+            <ButtonForm>Filtrar</ButtonForm>
+            <ButtonForm onClick={handleRemoveFilters} type="button">
+              Remover Filtros
+            </ButtonForm>
           </FormDiv.form>
         </form>
       </SimplePopover>
