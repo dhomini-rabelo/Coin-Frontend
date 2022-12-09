@@ -67,7 +67,7 @@ export const Div = {
   buttonComponentStyle: styled.div`
     width: 100% !important;
 
-    #buttonComponent {
+    & > button {
       background: #5ed5a8;
       border-radius: 0.5rem;
       width: 100% !important;

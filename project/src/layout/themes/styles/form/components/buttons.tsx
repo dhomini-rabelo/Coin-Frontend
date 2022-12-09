@@ -6,20 +6,26 @@ export function ButtonForm({
   children,
   active = true,
   onFetch = false,
+  type = 'submit',
+  onClick = () => {
+    return {}
+  },
 }: {
   children: ReactNode
   active?: boolean
   onFetch?: boolean
+  type?: 'submit' | 'button' | 'reset'
+  onClick?: () => void
 }) {
   return onFetch ? (
     <Div.buttonComponentStyle>
-      <button id="buttonComponent" type="submit" disabled className="stage">
+      <button type={type} disabled className="stage">
         <Loading />
       </button>
     </Div.buttonComponentStyle>
   ) : (
     <Div.buttonComponentStyle>
-      <button id="buttonComponent" type="submit">
+      <button type={type} onClick={onClick}>
         {children}
       </button>
     </Div.buttonComponentStyle>
