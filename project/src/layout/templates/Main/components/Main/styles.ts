@@ -6,5 +6,10 @@ export const Div = {
     margin: 0 auto;
     padding-top: 0.9375rem;
     padding-bottom: 116px;
+
+    &:has([data-headlessui-state='open'])
+      > div:not([data-headlessui-state='open']) {
+      display: none;
+    }
   `,
 }
