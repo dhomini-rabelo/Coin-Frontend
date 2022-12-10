@@ -46,6 +46,14 @@ export function processFormErrorResponse<SchemaType extends FieldValues>(
       reset,
       adapterFields,
     )
+  } else if (error.response!.status === 401) {
+    if (renderFeedback) {
+      renderFeedback('error', 'Login expirado', () => {
+        window.location.href = '/'
+      })
+    } else {
+      window.location.href = '/'
+    }
   } else {
     reset(fieldsData)
     if (renderFeedback) {
