@@ -8,14 +8,34 @@ import { BillModel } from '../../code/models/bill'
 import { useQuery } from 'react-query'
 import { getBills } from '../../code/api/consumers/bills'
 import { LoadingPage } from '../../layout/components/LoadingPage'
+import { BillController } from '../../code/controllers/Bill'
 
 export function IncomePage() {
   const { data, isFetched } = useQuery<BillModel[]>('bills', getBills)
-  const incomeValue = 2000
-  const expenseValue = 1500
-  const billValue = incomeValue - expenseValue
-  const percent = 25
-  const percentColor = percent >= 0 ? '#32D74B' : '#FF6B6B'
+  const bills = data || []
+  const billsData = bills.reduce(
+    (acc, bill) => {
+      const billController = new BillController(bill)
+      if (billController.isIncome) {
+        return {
+          ...acc,
+          incomeValue: acc.incomeValue + billController.value,
+        }
+      } else {
+        return {
+          ...acc,
+          expenseValue: acc.expenseValue + billController.value,
+        }
+      }
+    },
+    {
+      incomeValue: 0,
+      expenseValue: 0,
+    },
+  )
+  const billsBalance = billsData.incomeValue - billsData.expenseValue
+  const billsAverage = (billsData.expenseValue * 100) / billsData.incomeValue
+  const percentColor = billsAverage >= 0 ? '#32D74B' : '#FF6B6B'
   const latestBills = data?.sort((obj1, obj2) =>
     new Date(obj1.created_at) > new Date(obj2.created_at) ? 1 : -1,
   )
@@ -36,38 +56,39 @@ export function IncomePage() {
         <Div.incomeContainer>
           <Div.income>
             <H2.income>SALDO ATUAL</H2.income>
-            <Span.value isIncome={billValue >= 0}>
-              {priceFormatter.format(billValue)}
+            <Span.value isIncome={billsBalance >= 0}>
+              {priceFormatter.format(billsBalance)}
             </Span.value>
           </Div.income>
           <Div.income className="forPC">
             <H2.income>GANHOS</H2.income>
             <Span.value isIncome={true}>
-              {priceFormatter.format(incomeValue)}
+              {priceFormatter.format(billsData.incomeValue)}
             </Span.value>
           </Div.income>
           <Div.income className="forPC">
             <H2.income>GASTOS</H2.income>
             <Span.value isIncome={false}>
-              {priceFormatter.format(expenseValue)}
+              {priceFormatter.format(billsData.expenseValue)}
             </Span.value>
           </Div.income>
           <Div.arrow>
-            {percent >= 0 ? (
-              <>
-                <ArrowUp size={60} color={percentColor} />
-                <span style={{ color: percentColor }}>
-                  {percent.toFixed(0)}%
-                </span>
-              </>
-            ) : (
-              <>
-                <ArrowDown size={60} color={percentColor} />
-                <span style={{ color: percentColor }}>
-                  {(percent * -1).toFixed(0)}%
-                </span>
-              </>
-            )}
+            {isFetched &&
+              (billsAverage >= 0 ? (
+                <>
+                  <ArrowUp size={60} color={percentColor} />
+                  <span style={{ color: percentColor }}>
+                    {billsAverage.toFixed(0)}%
+                  </span>
+                </>
+              ) : (
+                <>
+                  <ArrowDown size={60} color={percentColor} />
+                  <span style={{ color: percentColor }}>
+                    {(billsAverage * -1).toFixed(0)}%
+                  </span>
+                </>
+              ))}
           </Div.arrow>
         </Div.incomeContainer>
         <Div.time>
