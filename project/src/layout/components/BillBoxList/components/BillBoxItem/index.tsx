@@ -12,7 +12,7 @@ export function BillBoxItem({ bill }: { bill: BillModel }) {
         <H2.title>{bill.title}</H2.title>
         <Span.value isIncome={billController.isIncome}>
           {!billController.isScheduled ? (
-            priceFormatter.format(bill.value)
+            priceFormatter.format(billController.value)
           ) : (
             <Clock size={20} />
           )}

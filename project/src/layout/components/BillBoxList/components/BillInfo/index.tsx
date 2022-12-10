@@ -64,7 +64,7 @@ export function BillInfo({
           <LabelInputForm
             label="Valor"
             name="value"
-            value={priceFormatter.format(bill.value)}
+            value={priceFormatter.format(billController.value)}
           />
         </div>
       </FormDiv.form>

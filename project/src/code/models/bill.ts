@@ -9,7 +9,7 @@ export interface BillModel {
   description: string
   bill_type: billTypeChoicesType
   payment_method: paymentMethodChoicesType
-  value: number
+  value: string
   day: number | null
   partials: number | null
   created_at: string
