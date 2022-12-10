@@ -12,11 +12,12 @@ import {
   billTypeChoicesType,
   paymentMethodChoicesType,
 } from '../../code/models/support/choices'
+import { LoadingPage } from '../../layout/components/LoadingPage'
 
 export function BillPage() {
-  const [bills, setBills] = useState<BillModel[]>([])
+  const [bills, setBills] = useState<BillModel[] | null>(null)
   const { data, isFetched } = useQuery<BillModel[]>('bills', getBills)
-  const filtersApplied = bills.length !== data?.length
+  const filtersApplied = isFetched && !!bills && bills.length !== data?.length
 
   useEffect(() => {
     if (isFetched) {
@@ -65,7 +66,7 @@ export function BillPage() {
             </AddBillForm>
           </Div.funel>
         </Div.title>
-        <BillBoxList bills={bills} />
+        {isFetched && bills ? <BillBoxList bills={bills} /> : <LoadingPage />}
       </Div.container>
 
       <AddBillForm>

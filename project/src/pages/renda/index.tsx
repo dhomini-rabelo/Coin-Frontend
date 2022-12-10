@@ -7,9 +7,10 @@ import { BillBoxList } from '../../layout/components/BillBoxList'
 import { BillModel } from '../../code/models/bill'
 import { useQuery } from 'react-query'
 import { getBills } from '../../code/api/consumers/bills'
+import { LoadingPage } from '../../layout/components/LoadingPage'
 
 export function IncomePage() {
-  const { data } = useQuery<BillModel[]>('bills', getBills)
+  const { data, isFetched } = useQuery<BillModel[]>('bills', getBills)
   const incomeValue = 2000
   const expenseValue = 1500
   const billValue = incomeValue - expenseValue
@@ -19,7 +20,9 @@ export function IncomePage() {
     new Date(obj1.created_at) > new Date(obj2.created_at) ? 1 : -1,
   )
   const latest10Bills =
-    (latestBills || []).length > 10 ? latestBills!.slice(0, 10) : latestBills
+    (latestBills || []).length > 10
+      ? latestBills!.slice(0, 10)
+      : latestBills || []
 
   return (
     <>
@@ -71,7 +74,11 @@ export function IncomePage() {
           <H2.bill>Histórico</H2.bill>
           <ClockCounterClockwise size={24} color="#fafafa" />
         </Div.time>
-        <BillBoxList bills={latest10Bills || []} />
+        {isFetched && latest10Bills ? (
+          <BillBoxList bills={latest10Bills} />
+        ) : (
+          <LoadingPage />
+        )}
       </Div.container>
     </>
   )
