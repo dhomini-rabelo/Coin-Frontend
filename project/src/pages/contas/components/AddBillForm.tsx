@@ -17,9 +17,11 @@ import {
   billTypeChoices,
   paymentMethodChoices,
 } from '../../../code/models/support/choices'
+import { useQueryClient } from 'react-query'
 
 export function AddBillForm({ children }: { children: ReactNode }) {
   const { FeedbackElement, renderFeedback } = useFeedback()
+  const queryClient = useQueryClient()
   const registerBillFormHook = useForm<RegisterBillSchemaType>({
     resolver: zodResolver(RegisterBillSchema),
   })
@@ -49,7 +51,7 @@ export function AddBillForm({ children }: { children: ReactNode }) {
         ...registerFormState,
         day: registerFormState.day || 1,
         partials: registerFormState.partials || 1,
-        value: registerFormState.value || 1,
+        value: registerFormState.value || 0,
       })
     }
   }, [isScheduled, setValue, getValues, reset])
@@ -63,8 +65,9 @@ export function AddBillForm({ children }: { children: ReactNode }) {
         'bills',
         isScheduled ? data : { ...data, day: null, partials: null },
       )
-      .then((response) => {
+      .then(async (response) => {
         reset(data)
+        await queryClient.invalidateQueries(['bills'])
         renderFeedback('success', 'Conta adicionada')
       })
       .catch((error) => {

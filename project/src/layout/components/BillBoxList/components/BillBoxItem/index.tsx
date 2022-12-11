@@ -10,15 +10,21 @@ export function BillBoxItem({ bill }: { bill: BillModel }) {
     <Div.box>
       <Div.title>
         <H2.title>{bill.title}</H2.title>
-        <Span.value isIncome={billController.isIncome}>
+        <Span.value
+          isIncome={billController.isIncome}
+          className="flex items-center justify-center"
+        >
           {!billController.isScheduled ? (
             priceFormatter.format(billController.value)
           ) : (
-            <Clock size={20} />
+            <>
+              <span>{priceFormatter.format(billController.value)}</span>
+              <Clock size={20} className="inline ml-1" />
+            </>
           )}
         </Span.value>
       </Div.title>
-      <Span.description>{bill.description}</Span.description>
+      <Span.description>{bill.description || '...'}</Span.description>
     </Div.box>
   )
 }
