@@ -16,15 +16,18 @@ export function IncomePage() {
   const billsData = bills.reduce(
     (acc, bill) => {
       const billController = new BillController(bill)
+      const additionalValue = billController.isScheduled
+        ? billController.value / bill.partials!
+        : billController.value
       if (billController.isIncome) {
         return {
           ...acc,
-          incomeValue: acc.incomeValue + billController.value,
+          incomeValue: acc.incomeValue + additionalValue,
         }
       } else {
         return {
           ...acc,
-          expenseValue: acc.expenseValue + billController.value,
+          expenseValue: acc.expenseValue + additionalValue,
         }
       }
     },
@@ -36,13 +39,8 @@ export function IncomePage() {
   const billsBalance = billsData.incomeValue - billsData.expenseValue
   const billsAverage = (billsData.expenseValue * 100) / billsData.incomeValue
   const percentColor = billsAverage >= 0 ? '#32D74B' : '#FF6B6B'
-  const latestBills = data?.sort((obj1, obj2) =>
-    new Date(obj1.created_at) > new Date(obj2.created_at) ? 1 : -1,
-  )
   const latest10Bills =
-    (latestBills || []).length > 10
-      ? latestBills!.slice(0, 10)
-      : latestBills || []
+    (data || []).length > 10 ? data!.slice(0, 10) : data || []
 
   return (
     <>
