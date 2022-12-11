@@ -26,3 +26,4 @@ dist-ssr
 # python
 .mypy_cache/
 editor.py
+main.py

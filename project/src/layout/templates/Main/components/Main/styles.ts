@@ -9,8 +9,16 @@ export const Div = {
 
     @media (max-width: 540px) {
       &:has([data-headlessui-state='open'])
-        > div:not([data-headlessui-state='open']) {
-        display: none;
+        div:not(:has([data-headlessui-state='open']))
+        > div {
+        visibility: hidden;
+        max-height: 0;
+      }
+      &:has([data-headlessui-state='open'])
+        div[data-headlessui-state='open']
+        div {
+        visibility: visible;
+        max-height: none;
       }
     }
   `,

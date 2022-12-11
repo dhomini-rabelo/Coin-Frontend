@@ -22,7 +22,7 @@ export const Div = {
   select: styled.div`
     background-color: #363636;
     padding-left: 0.3125rem;
-    max-height: 3.25rem;
+    height: 3.25rem;
     li,
     button,
     div {
