@@ -24,6 +24,61 @@ class AuthController {
     this.refreshTokenTimeoutInSeconds = refreshTokenTimeoutInSeconds
   }
 
+  configureAuthClient(client: AxiosInstance, authInstance: AuthStructureType) {
+    this.setAuthHeader(client, authInstance)
+    this.setResponseInterceptorForAuthenticatedUserClient(
+      client,
+      authInstance.email,
+      authInstance.notificationTime,
+    )
+  }
+
+  saveAuthInstance(authInstance: AuthStructureType) {
+    const authInstanceForSave: SavedAuthStructureType = {
+      ...authInstance,
+      savedAt: new Date().toISOString(),
+    }
+    localStorage.setItem(
+      this.tokensSaveKey,
+      JSON.stringify(authInstanceForSave),
+    )
+  }
+
+  killAuthInstance() {
+    localStorage.removeItem(this.tokensSaveKey)
+  }
+
+  getAuthInstance(): ResponseAuthStructureType {
+    const savedInstance: null | string = localStorage.getItem(
+      this.tokensSaveKey,
+    )
+    const authInstance: null | SavedAuthStructureType =
+      savedInstance && JSON.parse(savedInstance)
+
+    if (
+      !authInstance ||
+      !authInstance.email ||
+      this.tokenWasExpired(authInstance.savedAt)
+    ) {
+      this.killAuthInstance()
+      return {
+        isAuthenticated: false,
+        accessToken: '',
+        refreshToken: '',
+        email: '',
+        notificationTime: '8',
+      }
+    } else {
+      return {
+        isAuthenticated: true,
+        email: authInstance.email,
+        accessToken: authInstance.accessToken,
+        refreshToken: authInstance.refreshToken,
+        notificationTime: authInstance.notificationTime,
+      }
+    }
+  }
+
   private getAuthorizationHeaderFromAccessToken(accessToken: string) {
     return `Bearer ${accessToken}`
   }
@@ -84,61 +139,6 @@ class AuthController {
         return Promise.reject(error)
       },
     )
-  }
-
-  configureAuthClient(client: AxiosInstance, authInstance: AuthStructureType) {
-    this.setAuthHeader(client, authInstance)
-    this.setResponseInterceptorForAuthenticatedUserClient(
-      client,
-      authInstance.email,
-      authInstance.notificationTime,
-    )
-  }
-
-  saveAuthInstance(authInstance: AuthStructureType) {
-    const authInstanceForSave: SavedAuthStructureType = {
-      ...authInstance,
-      savedAt: new Date().toISOString(),
-    }
-    localStorage.setItem(
-      this.tokensSaveKey,
-      JSON.stringify(authInstanceForSave),
-    )
-  }
-
-  killAuthInstance() {
-    localStorage.removeItem(this.tokensSaveKey)
-  }
-
-  getAuthInstance(): ResponseAuthStructureType {
-    const savedInstance: null | string = localStorage.getItem(
-      this.tokensSaveKey,
-    )
-    const authInstance: null | SavedAuthStructureType =
-      savedInstance && JSON.parse(savedInstance)
-
-    if (
-      !authInstance ||
-      !authInstance.email ||
-      this.tokenWasExpired(authInstance.savedAt)
-    ) {
-      this.killAuthInstance()
-      return {
-        isAuthenticated: false,
-        accessToken: '',
-        refreshToken: '',
-        email: '',
-        notificationTime: '8',
-      }
-    } else {
-      return {
-        isAuthenticated: true,
-        email: authInstance.email,
-        accessToken: authInstance.accessToken,
-        refreshToken: authInstance.refreshToken,
-        notificationTime: authInstance.notificationTime,
-      }
-    }
   }
 
   private tokenWasExpired(savedAtIsoDate: string) {
