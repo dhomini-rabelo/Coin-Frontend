@@ -27,7 +27,6 @@
 
 <ul>
 
-<br>
 <li>
 <h3>Cadastro de usuários</h3>
 <p>A validação de formulário é feita com zod neste projeto</p>
