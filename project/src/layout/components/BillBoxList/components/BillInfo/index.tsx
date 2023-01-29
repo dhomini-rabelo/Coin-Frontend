@@ -20,7 +20,7 @@ export function BillInfo({
   const billController = new BillController(bill)
 
   return (
-    <SimplePopover button={children} long={true}>
+    <SimplePopover button={children} long={true} popoverClass="col-span-1 flex">
       <FormDiv.form className="grid grid-cols-2 gap-x-4">
         <div className="col-span-2 sm:col-span-1">
           <LabelInputForm label="Título" name="title" value={bill.title} />
