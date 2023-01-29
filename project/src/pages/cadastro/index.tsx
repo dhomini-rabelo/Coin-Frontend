@@ -28,7 +28,11 @@ export function RegisterPage() {
 
   function onValidSubmit(data: RegisterUserSchemaType) {
     client
-      .post('register', data)
+      .post('register', data, {
+        headers: {
+          Authorization: '',
+        },
+      })
       .then((response) => {
         renderFeedback('success', 'Usuário cadastrado com sucesso', () => {
           navigateTo('/')
