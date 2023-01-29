@@ -81,11 +81,22 @@ export function AddBillForm({ children }: { children: ReactNode }) {
       })
   }
 
+  function onOpenResetForm() {
+    reset({
+      day: 1,
+      partials: 1,
+      value: 0,
+    })
+  }
+
   return (
     <>
       {FeedbackElement}
 
-      <SimplePopover button={children} long={true}>
+      <SimplePopover
+        button={<div onClick={onOpenResetForm}>{children}</div>}
+        long={true}
+      >
         <form onSubmit={handleSubmit(onValidSubmit)}>
           <FormDiv.form className="grid grid-cols-2 gap-x-4">
             <div className="col-span-2 sm:col-span-1">
