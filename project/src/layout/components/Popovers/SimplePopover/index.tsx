@@ -7,13 +7,15 @@ export function SimplePopover({
   button,
   children,
   long = false,
+  popoverClass = 'flex w-full',
 }: {
   button: ReactNode | string
   children: ReactNode
   long?: boolean
+  popoverClass?: string
 }) {
   return (
-    <Popover className="flex w-full">
+    <Popover className={popoverClass}>
       <Popover.Panel>
         <Div.container>
           <Div.box long={long}>
