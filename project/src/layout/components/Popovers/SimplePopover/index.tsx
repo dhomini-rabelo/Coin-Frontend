@@ -13,7 +13,7 @@ export function SimplePopover({
   long?: boolean
 }) {
   return (
-    <Popover className="flex" style={{ width: '400px' }}>
+    <Popover className="flex w-full">
       <Popover.Panel>
         <Div.container>
           <Div.box long={long}>
@@ -29,7 +29,7 @@ export function SimplePopover({
         </Div.container>
       </Popover.Panel>
 
-      <Popover.Button className="flex-1">{button}</Popover.Button>
+      <Popover.Button className="flex-1 max-w-[100%]">{button}</Popover.Button>
     </Popover>
   )
 }

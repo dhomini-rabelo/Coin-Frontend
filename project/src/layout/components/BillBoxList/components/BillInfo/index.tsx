@@ -36,7 +36,7 @@ export function BillInfo({
           <LabelInputForm
             label="Descrição"
             name="description"
-            value={bill.description}
+            value={bill.description || '...'}
           />
         </div>
         <div className="col-span-2 sm:col-span-1">

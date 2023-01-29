@@ -5,7 +5,7 @@ import { Div } from './styles'
 
 export function BillBoxList({ bills }: { bills: BillModel[] }) {
   return (
-    <Div.container className="bill-list">
+    <Div.container className="bill-list mx-auto">
       {bills.length ? (
         bills.map((bill) => (
           <BillInfo key={bill.id} bill={bill}>
