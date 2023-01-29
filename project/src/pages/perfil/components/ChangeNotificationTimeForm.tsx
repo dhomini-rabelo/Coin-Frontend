@@ -69,6 +69,7 @@ export function ChangeNotificationTimeForm() {
             description="Altere o horário do envio de alertas por email"
           />
         }
+        popoverClass="flex"
       >
         <FormDiv.form>
           <form onSubmit={handleSubmit(onValidSubmit)}>

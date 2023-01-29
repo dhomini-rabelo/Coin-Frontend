@@ -65,6 +65,7 @@ export function ChangeEmailForm() {
             description="Altere o endereço de email da sua conta"
           />
         }
+        popoverClass="flex"
       >
         <FormDiv.form>
           <form onSubmit={handleSubmit(onValidSubmit)}>

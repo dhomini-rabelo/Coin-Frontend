@@ -63,6 +63,7 @@ export function ChangePasswordForm() {
             description="Altere a senha da sua conta"
           />
         }
+        popoverClass="flex"
       >
         <FormDiv.form>
           <form
